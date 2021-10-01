@@ -2,7 +2,6 @@ import java.util.Scanner;
 public class Adventure {
 
 
-
   public static void main(String[] args) {
 
     Scanner in = new Scanner(System.in);
@@ -10,6 +9,9 @@ public class Adventure {
     String playerDirection;
 
     System.out.println("\nWelcome to the adventure game 1.0");
+
+
+    Room currentRoom = new Room("room 1", "\nThe room is full of cheese...");
 
 
     do {
@@ -26,7 +28,7 @@ public class Adventure {
       } else if(playerDirection.equals("go east")){
         System.out.println("Going east");
       } else if(playerDirection.equals("look")){
-        System.out.println("Looking around");
+        System.out.println(currentRoom);
       } else if(playerDirection.equals("exit")) {
         isGameActive = true;
       } else {
