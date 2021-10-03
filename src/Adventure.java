@@ -8,10 +8,12 @@ public class Adventure {
     boolean isGameActive = false;
     String playerDirection;
 
-    System.out.println("\nWelcome to the adventure game 1.0");
+    System.out.println("\nWelcome to the adventure game 1.2");
 
 
-    Room currentRoom = new Room("room 1", "\nThe room is full of cheese...");
+    Room room1 = new Room("room 1", "\nThe room is full of cheese...");
+    Room room2 = new Room("room 2", "\nThe room is filled with smoke...");
+
 
 
     do {
@@ -28,7 +30,7 @@ public class Adventure {
       } else if(playerDirection.equals("go east")){
         System.out.println("Going east");
       } else if(playerDirection.equals("look")){
-        System.out.println(currentRoom);
+        System.out.println(room1);
       } else if(playerDirection.equals("exit")) {
         isGameActive = true;
       } else {
