@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Adventure {
 
 
@@ -10,35 +11,31 @@ public class Adventure {
 
     System.out.println("\nWelcome to the adventure game 1.2");
 
+    Room room1 = new Room();
+    Room room2 = new Room();
+    Room room3 = new Room();
+    Room room4 = new Room();
+    Room room5 = new Room();
+    Room room6 = new Room();
+    Room room7 = new Room();
+    Room room8 = new Room();
+    Room room9 = new Room();
 
-    Room room1 = new Room("room 1", "\nThe room is full of cheese...");
-    Room room2 = new Room("room 2", "\nThe room is filled with smoke...");
 
-
-
-    do {
+    while (!isGameActive) {
       System.out.println("\nChoose a direction to go: north, south, west and east\n");
 
       playerDirection = in.nextLine();
 
-      if(playerDirection.equals("go north")){
-        System.out.println("Going north");
-      } else if(playerDirection.equals("go south")){
-        System.out.println("Going south");
-      } else if (playerDirection.equals("go west")){
-        System.out.println("Going west");
-      } else if(playerDirection.equals("go east")){
-        System.out.println("Going east");
-      } else if(playerDirection.equals("look")){
-        System.out.println(room1);
-      } else if(playerDirection.equals("exit")) {
-        isGameActive = true;
-      } else {
-        System.out.println("Sorry, what you typed in were invalid! Try again.");
+      if (!playerDirection.equalsIgnoreCase("go north") || playerDirection.equalsIgnoreCase("go south") ||
+          playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
+          playerDirection.equalsIgnoreCase("go help") || playerDirection.equalsIgnoreCase("go look") ||
+          playerDirection.equalsIgnoreCase("go exit")) {
+        System.out.println("Not a valid input command");
       }
 
-    } while(!isGameActive);
+
+    }
 
   }
-
 }
