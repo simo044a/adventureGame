@@ -5,12 +5,13 @@ public class Adventure {
 
   public static void main(String[] args) {
 
+    // Alle variabler i Adventure klassen.
     Scanner in = new Scanner(System.in);
-    boolean isGameActive = false;
-    String playerDirection;
-    Room currentRoom;
-
-    System.out.println("\nWelcome to the adventure game 1.2");
+    boolean isGameActive = false; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
+    String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
+    Room currentRoom; /* variabel, som holder styr på hvilket rum spilleren befinder sig i, og ændres i switch statement
+    via input.
+    */
 
     Room room1 = new Room("room 1", "\nIt's full of cheese");
     Room room2 = new Room("room 2", "\nIt's full of water");
@@ -22,6 +23,8 @@ public class Adventure {
     Room room8 = new Room("room 8", "\nIt's full of people");
     Room room9 = new Room("room 9", "\nIt's full of alcohol");
 
+
+    // Her bliver attributterne tildelt, for hvordan hvert rum ligger i forhold til hinandens retninger.
     currentRoom = room1;
     room1.setNorth(null);
     room1.setSouth(room4);
@@ -69,17 +72,29 @@ public class Adventure {
     room9.setEast(null);
 
 
-    System.out.println("\nChoose a direction to go: north, south, west and east.");
-    System.out.println("\nother commands: go look, go help or go exit.");
-
+    // Her gives en introduktion til spillet handling og input muligheder.
+    System.out.println("\nWelcome to the adventure game! \nThe map consist nine rooms, which");
+    System.out.println("\nChoose a direction to go: north, south, west and east. \nWrite \"go \" in front of your desired direction.");
+    System.out.println("\nother helpful commands: \"go look\", for getting the name and description of the current room, " +
+        "\nor write \"go exit\" to end the game.");
 
     System.out.println("You are in " + currentRoom.getName());
     System.out.println(currentRoom.getRoomDescription());
 
+    /*
+    Her bliver spillets inputs del startet - koden kører i et loop ud fra boolean variablen "isGameActive"
+    indtil spilleren giver input "go exit".
+     */
     while (!isGameActive) {
 
-      playerDirection = in.nextLine();
+      playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
 
+
+      /*
+      I dette switch loop, tjekker input playerDirection om de giver et valid input. Alt efter hvilket rum spilleren
+      befinder sig i, og hvilken retning de vælger, ændres variablen "currentRoom". Dernæst opdateres currenRoom til det
+      nye rum, og udprinter navnet på rummet, samt en beskrivelse.
+       */
 
       switch (playerDirection) {
         case "go north":
@@ -133,6 +148,10 @@ public class Adventure {
 
       }
 
+      /*
+      Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
+      og dernæst bliver spilleren ført tilbage til starten af loopet.
+      */
       if (!playerDirection.equalsIgnoreCase("go north") || !playerDirection.equalsIgnoreCase("go south") ||
           !playerDirection.equalsIgnoreCase("go west") || !playerDirection.equalsIgnoreCase("go east") ||
           !playerDirection.equalsIgnoreCase("go help") || !playerDirection.equalsIgnoreCase("go look") ||
