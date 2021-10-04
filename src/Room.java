@@ -9,49 +9,101 @@ public class Room {
   private Room east;
 
   // Constructor til forsøg
-  Room(String name, String roomDescription){
+  Room(String name, String roomDescription) {
     setName(name);
     setRoomDescription(roomDescription);
   }
 
 
-// Set and Get for name
-  public void setName(String name){this.name = name;}
+  // Set and Get for name
+  public void setName(String name) {
+    this.name = name;
+  }
 
-  public String getName(){return name;}
+  public String getName() {
+    return name;
+  }
 
   // Set and Get for name
-public void setRoomDescription(String roomDescription){this.roomDescription = roomDescription;}
+  public void setRoomDescription(String roomDescription) {
+    this.roomDescription = roomDescription;
+  }
 
-public String getRoomDescription() {return roomDescription;}
+  public String getRoomDescription() {
+    return roomDescription;
+  }
 
   // Set and Get for north
-  public void setNorth(Room north) {this.north = north;}
+  public void setNorth(Room north) {
+    this.north = north;
+  }
 
-  public Room getNorth(){return north;}
+  public Room getNorth() {
+    return north;
+  }
 
   // Set and get for south
-  public void setSouth(Room south) {this.south = south;}
+  public void setSouth(Room south) {
+    this.south = south;
+  }
 
-  public Room getSouth(){return south;}
+  public Room getSouth() {
+    return south;
+  }
 
   // Set and get for west
-  public void setWest(Room west){this.west = west;}
+  public void setWest(Room west) {
+    this.west = west;
+  }
 
-  public Room getWest(){return west;}
+  public Room getWest() {
+    return west;
+  }
 
   // Set and Get for east
-  public void setEast(Room east){this.east = east;}
+  public void setEast(Room east) {
+    this.east = east;
+  }
 
-  public Room getEast(){return east;}
+  public Room getEast() {
+    return east;
+  }
 
 
-  public String toString(){
+  public String toString() {
     return name + " " + roomDescription;
 
   }
 
+  boolean checkNorth(){
+    if (this.north==null){
+      return false;}
+    else{
+      return true;}
   }
+
+  boolean checkSouth(){
+    if (this.south==null){
+      return false;}
+    else{
+      return true;}
+  }
+
+  boolean checkWest(){
+    if (this.west==null){
+      return false;}
+    else{
+      return true;}
+  }
+
+  boolean checkEast(){
+    if (this.east==null){
+      return false;}
+    else{
+      return true;}
+  }
+
+}
 
 
 

@@ -12,15 +12,15 @@ public class Adventure {
 
     System.out.println("\nWelcome to the adventure game 1.2");
 
-    Room room1 = new Room("room 1", "It's full of cheese");
-    Room room2 = new Room("room 2", "It's full of water");
-    Room room3 = new Room("room 3", "It's full of fire");
-    Room room4 = new Room("room 4", "It's full of dirt");
-    Room room5 = new Room("room 5", "It's full of dust");
-    Room room6 = new Room("room 6", "It's full of dogs");
-    Room room7 = new Room("room 7", "It's full of flowers");
-    Room room8 = new Room("room 8", "It's full of people");
-    Room room9 = new Room("room 9", "It's full of alcohol");
+    Room room1 = new Room("\nroom 1", "\nIt's full of cheese");
+    Room room2 = new Room("\nroom 2", "\nIt's full of water");
+    Room room3 = new Room("\nroom 3", "\nIt's full of fire");
+    Room room4 = new Room("\nroom 4", "\nIt's full of dirt");
+    Room room5 = new Room("\nroom 5", "\nIt's full of dust");
+    Room room6 = new Room("\nroom 6", "\nIt's full of dogs");
+    Room room7 = new Room("\nroom 7", "\nIt's full of flowers");
+    Room room8 = new Room("\nroom 8", "\nIt's full of people");
+    Room room9 = new Room("\nroom 9", "\nIt's full of alcohol");
 
     currentRoom = room1;
     room1.setNorth(null);
@@ -69,36 +69,73 @@ public class Adventure {
     room9.setEast(null);
 
 
-
     System.out.println("\nChoose a direction to go: north, south, west and east.");
     System.out.println("\nother commands: go look, go help or go exit.");
 
+
+    System.out.println("You are in " + currentRoom.getName());
+    System.out.println(currentRoom.getRoomDescription());
+
     while (!isGameActive) {
-      System.out.println("You are in " + currentRoom.getName());
-      System.out.println(currentRoom.getRoomDescription());
 
       playerDirection = in.nextLine();
 
-      if (!playerDirection.equalsIgnoreCase("go north") || playerDirection.equalsIgnoreCase("go south") ||
-          playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
-          playerDirection.equalsIgnoreCase("go help") || playerDirection.equalsIgnoreCase("go look") ||
-          playerDirection.equalsIgnoreCase("go exit")) {
-        System.out.println("Not a valid input command");
-      }
-
       switch (playerDirection) {
         case "go north":
-        if(currentRoom.getNorth() == null) {
-          System.out.println("There is no room to enter. Try go in another direction");
+          if (currentRoom.checkNorth()) {
+            currentRoom = currentRoom.getNorth();
+            System.out.println("You are in " + currentRoom.getName());
+            System.out.println("\n" + currentRoom.getRoomDescription());
+          } else if (!currentRoom.checkNorth()) {
+            System.out.println("There is no room in that direction. Try another one");
+
+          }
+          break;
+        case "go south":
+          if (currentRoom.checkSouth()) {
+            currentRoom = currentRoom.getSouth();
+            System.out.println("You are in " + currentRoom.getName());
+            System.out.println("\n" + currentRoom.getRoomDescription());
+          } else if (!currentRoom.checkSouth()) {
+            System.out.println("There is no room in that direction. Try another one");
+          }
+          break;
+        case "go west":
+          if (currentRoom.checkWest()) {
+            currentRoom = currentRoom.getWest();
+            System.out.println("You are in " + currentRoom.getName());
+            System.out.println("\n" + currentRoom.getRoomDescription());
+          } else if (!currentRoom.checkWest()) {
+            System.out.println("There is no room in that direction. Try another one");
+          }
+          break;
+        case "go east":
+          if (currentRoom.checkEast()) {
+            currentRoom = currentRoom.getEast();
+            System.out.println("You are in " + currentRoom.getName());
+            System.out.println("\n" + currentRoom.getRoomDescription());
+          } else if (!currentRoom.checkEast()) {
+            System.out.println("There is no room in that direction. Try another one");
+          }
+          break;
+        case "go look":
+          System.out.println("You are in " + currentRoom.getName());
+          System.out.println("\n" + currentRoom.getRoomDescription());
+          break;
+        case "go help":
+          System.out.println("\nChoose a direction to go: north, south, west and east.");
+          System.out.println("\nother commands: go look, go help or go exit.");
+          break;
+        case "go exit":
+          isGameActive = true;
+          break;
+
+
       }
-        if()
 
 
     }
 
-
   }
-
-}
 
 }
