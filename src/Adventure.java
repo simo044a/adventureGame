@@ -72,7 +72,7 @@ public class Adventure {
 
     // Her gives en introduktion til spillet handling og input muligheder.
     System.out.println("\nWelcome to the adventure game! \nThe map consist of nine rooms, which");
-    System.out.println("\nChoose a direction to go: north, south, west and east." );
+    System.out.println("\nChoose a direction to go: north, south, west and east.");
     System.out.println("\nother helpful commands: \"go look\", for getting the name and description of the current room, " +
         "\nor write \"go exit\" to end the game.");
 
@@ -132,15 +132,15 @@ public class Adventure {
             System.out.println("There is no room in that direction. Try another one");
           }
           break;
-        case "go look", "look":
+        case "look":
           System.out.println("You are in " + currentRoom.getName());
           System.out.println("\n" + currentRoom.getRoomDescription());
           break;
-        case "go help", "help":
+        case "help":
           System.out.println("\nChoose a direction to go: north, south, west and east.");
           System.out.println("\nother commands: look, help or exit.");
           break;
-        case "go exit", "exit":
+        case "exit":
           isGameActive = false;
           break;
 
@@ -150,15 +150,12 @@ public class Adventure {
       Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
       og dernæst bliver spilleren ført tilbage til starten af loopet.
       */
-      if(!playerDirection.equalsIgnoreCase("go north") || !playerDirection.equalsIgnoreCase("go south") ||
-          !playerDirection.equalsIgnoreCase("go west") || !playerDirection.equalsIgnoreCase("go east") ||
-          !playerDirection.equalsIgnoreCase("go help") || !playerDirection.equalsIgnoreCase("go look") ||
-          !playerDirection.equalsIgnoreCase("go exit") || !playerDirection.equalsIgnoreCase(" ") ||
-          !playerDirection.equalsIgnoreCase("north") || !playerDirection.equalsIgnoreCase("south") ||
-          !playerDirection.equalsIgnoreCase("west") || !playerDirection.equalsIgnoreCase("east") ||
-          !playerDirection.equalsIgnoreCase("help") || !playerDirection.equalsIgnoreCase("look") ||
-          !playerDirection.equalsIgnoreCase("exit")) {
-        System.out.println("\nNot a valid input command - try again!"); }
+
+      String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east"};
+
+      if (!invalidName.equals(playerDirection));{
+        System.out.println("\nSorry! Your input is invalid. Try again!");
+      }
 
     }
 
