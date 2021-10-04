@@ -138,7 +138,7 @@ public class Adventure {
           break;
         case "go help", "help":
           System.out.println("\nChoose a direction to go: north, south, west and east.");
-          System.out.println("\nother commands: go look, go help or go exit.");
+          System.out.println("\nother commands: look, help or exit.");
           break;
         case "go exit", "exit":
           isGameActive = false;
