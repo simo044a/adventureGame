@@ -141,7 +141,7 @@ public class Adventure {
           System.out.println("\nother commands: go look, go help or go exit.");
           break;
         case "go exit", "exit":
-          isGameActive = true;
+          isGameActive = false;
           break;
 
       }
