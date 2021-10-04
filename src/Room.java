@@ -8,6 +8,13 @@ public class Room {
   private Room west;
   private Room east;
 
+  // Constructor til forsøg
+  Room(String name, String roomDescription){
+    setName(name);
+    setRoomDescription(roomDescription);
+  }
+
+
 // Set and Get for name
   public void setName(String name){this.name = name;}
 
@@ -36,6 +43,7 @@ public String getRoomDescription() {return roomDescription;}
   // Set and Get for east
   public void setEast(Room east){this.east = east;}
 
+  public Room getEast(){return east;}
 
 
   public String toString(){
@@ -43,5 +51,7 @@ public String getRoomDescription() {return roomDescription;}
 
   }
 
+  }
 
-}
+
+
