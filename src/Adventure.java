@@ -6,7 +6,7 @@ public class Adventure {
 
     // Alle variabler i Adventure klassen.
     Scanner in = new Scanner(System.in);
-    boolean isGameActive = false; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
+    boolean isGameActive = true; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
     String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
     Room currentRoom; /* variabel, som holder styr på hvilket rum spilleren befinder sig i, og ændres i switch statement
     via input. */
@@ -71,8 +71,8 @@ public class Adventure {
 
 
     // Her gives en introduktion til spillet handling og input muligheder.
-    System.out.println("\nWelcome to the adventure game! \nThe map consist nine rooms, which");
-    System.out.println("\nChoose a direction to go: north, south, west and east. \nWrite \"go \" in front of your desired direction.");
+    System.out.println("\nWelcome to the adventure game! \nThe map consist of nine rooms, which");
+    System.out.println("\nChoose a direction to go: north, south, west and east." );
     System.out.println("\nother helpful commands: \"go look\", for getting the name and description of the current room, " +
         "\nor write \"go exit\" to end the game.");
 
@@ -83,7 +83,7 @@ public class Adventure {
     Her bliver spillets inputs del startet - koden kører i et loop ud fra boolean variablen "isGameActive"
     indtil spilleren giver input "go exit".
      */
-    while (!isGameActive) {
+    while (isGameActive) {
 
       playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
 
@@ -95,7 +95,7 @@ public class Adventure {
        */
 
       switch (playerDirection) {
-        case "go north":
+        case "go north", "north":
           if (currentRoom.checkNorth()) {
             currentRoom = currentRoom.getNorth();
             System.out.println("You are in " + currentRoom.getName());
@@ -105,7 +105,7 @@ public class Adventure {
 
           }
           break;
-        case "go south":
+        case "go south", "south":
           if (currentRoom.checkSouth()) {
             currentRoom = currentRoom.getSouth();
             System.out.println("You are in " + currentRoom.getName());
@@ -114,7 +114,7 @@ public class Adventure {
             System.out.println("There is no room in that direction. Try another one");
           }
           break;
-        case "go west":
+        case "go west", "west":
           if (currentRoom.checkWest()) {
             currentRoom = currentRoom.getWest();
             System.out.println("You are in " + currentRoom.getName());
@@ -123,7 +123,7 @@ public class Adventure {
             System.out.println("There is no room in that direction. Try another one");
           }
           break;
-        case "go east":
+        case "go east", "east":
           if (currentRoom.checkEast()) {
             currentRoom = currentRoom.getEast();
             System.out.println("You are in " + currentRoom.getName());
@@ -132,15 +132,15 @@ public class Adventure {
             System.out.println("There is no room in that direction. Try another one");
           }
           break;
-        case "go look":
+        case "go look", "look":
           System.out.println("You are in " + currentRoom.getName());
           System.out.println("\n" + currentRoom.getRoomDescription());
           break;
-        case "go help":
+        case "go help", "help":
           System.out.println("\nChoose a direction to go: north, south, west and east.");
           System.out.println("\nother commands: go look, go help or go exit.");
           break;
-        case "go exit":
+        case "go exit", "exit":
           isGameActive = true;
           break;
 
@@ -150,10 +150,14 @@ public class Adventure {
       Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
       og dernæst bliver spilleren ført tilbage til starten af loopet.
       */
-      if (!playerDirection.equalsIgnoreCase("go north") || !playerDirection.equalsIgnoreCase("go south") ||
+      if(!playerDirection.equalsIgnoreCase("go north") || !playerDirection.equalsIgnoreCase("go south") ||
           !playerDirection.equalsIgnoreCase("go west") || !playerDirection.equalsIgnoreCase("go east") ||
           !playerDirection.equalsIgnoreCase("go help") || !playerDirection.equalsIgnoreCase("go look") ||
-          !playerDirection.equalsIgnoreCase("go exit") || !playerDirection.equalsIgnoreCase(" ")) {
+          !playerDirection.equalsIgnoreCase("go exit") || !playerDirection.equalsIgnoreCase(" ") ||
+          !playerDirection.equalsIgnoreCase("north") || !playerDirection.equalsIgnoreCase("south") ||
+          !playerDirection.equalsIgnoreCase("west") || !playerDirection.equalsIgnoreCase("east") ||
+          !playerDirection.equalsIgnoreCase("help") || !playerDirection.equalsIgnoreCase("look") ||
+          !playerDirection.equalsIgnoreCase("exit")) {
         System.out.println("\nNot a valid input command - try again!"); }
 
     }
