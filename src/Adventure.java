@@ -153,7 +153,7 @@ public class Adventure {
 
       String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east", " "};
 
-      if (invalidName.equals(playerDirection));{
+      if (!invalidName.equals(playerDirection));{
         System.out.println("\nSorry! Your input is invalid. Try again!");
       }
 
