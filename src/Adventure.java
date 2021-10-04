@@ -143,19 +143,18 @@ public class Adventure {
         case "exit":
           isGameActive = false;
           break;
-
+      }
+      if (playerDirection.equalsIgnoreCase("go north")  || playerDirection.equalsIgnoreCase("go south")||
+      playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
+      playerDirection.equalsIgnoreCase("help") || playerDirection.equalsIgnoreCase("look")||
+      playerDirection.equalsIgnoreCase("exit") || playerDirection.equalsIgnoreCase(" ")||
+      playerDirection.equalsIgnoreCase("north") || playerDirection.equalsIgnoreCase("south")||
+      playerDirection.equalsIgnoreCase("west") || playerDirection.equalsIgnoreCase("east")) {
+      } else {
+        System.out.println("Sorry! Your input is invalid.. Try again!");
       }
 
-      /*
-      Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
-      og dernæst bliver spilleren ført tilbage til starten af loopet.
-      */
 
-      String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east", " "};
-
-      if (!invalidName.equals(playerDirection));{
-        System.out.println("\nSorry! Your input is invalid. Try again!");
-      }
 
     }
 
