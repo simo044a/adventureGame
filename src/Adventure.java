@@ -151,9 +151,9 @@ public class Adventure {
       og dernæst bliver spilleren ført tilbage til starten af loopet.
       */
 
-      String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east"};
+      String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east", " "};
 
-      if (!invalidName.equals(playerDirection));{
+      if (invalidName.equals(playerDirection));{
         System.out.println("\nSorry! Your input is invalid. Try again!");
       }
 
