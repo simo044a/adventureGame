@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Adventure {
 
-
   public static void main(String[] args) {
 
     // Alle variabler i Adventure klassen.
@@ -10,8 +9,7 @@ public class Adventure {
     boolean isGameActive = false; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
     String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
     Room currentRoom; /* variabel, som holder styr på hvilket rum spilleren befinder sig i, og ændres i switch statement
-    via input.
-    */
+    via input. */
 
     Room room1 = new Room("room 1", "\nIt's full of cheese");
     Room room2 = new Room("room 2", "\nIt's full of water");
@@ -156,17 +154,10 @@ public class Adventure {
           !playerDirection.equalsIgnoreCase("go west") || !playerDirection.equalsIgnoreCase("go east") ||
           !playerDirection.equalsIgnoreCase("go help") || !playerDirection.equalsIgnoreCase("go look") ||
           !playerDirection.equalsIgnoreCase("go exit") || !playerDirection.equalsIgnoreCase(" ")) {
-        System.out.println("\nNot a valid input command - try again!");
-
-      }
-
+        System.out.println("\nNot a valid input command - try again!"); }
 
     }
-
 
   }
 
 }
-
-
-
