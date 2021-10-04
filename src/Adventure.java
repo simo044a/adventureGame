@@ -12,15 +12,15 @@ public class Adventure {
 
     System.out.println("\nWelcome to the adventure game 1.2");
 
-    Room room1 = new Room("\nroom 1", "\nIt's full of cheese");
-    Room room2 = new Room("\nroom 2", "\nIt's full of water");
-    Room room3 = new Room("\nroom 3", "\nIt's full of fire");
-    Room room4 = new Room("\nroom 4", "\nIt's full of dirt");
-    Room room5 = new Room("\nroom 5", "\nIt's full of dust");
-    Room room6 = new Room("\nroom 6", "\nIt's full of dogs");
-    Room room7 = new Room("\nroom 7", "\nIt's full of flowers");
-    Room room8 = new Room("\nroom 8", "\nIt's full of people");
-    Room room9 = new Room("\nroom 9", "\nIt's full of alcohol");
+    Room room1 = new Room("room 1", "\nIt's full of cheese");
+    Room room2 = new Room("room 2", "\nIt's full of water");
+    Room room3 = new Room("room 3", "\nIt's full of fire");
+    Room room4 = new Room("room 4", "\nIt's full of dirt");
+    Room room5 = new Room("room 5", "\nIt's full of dust");
+    Room room6 = new Room("room 6", "\nIt's full of dogs");
+    Room room7 = new Room("room 7", "\nIt's full of flowers");
+    Room room8 = new Room("room 8", "\nIt's full of people");
+    Room room9 = new Room("room 9", "\nIt's full of alcohol");
 
     currentRoom = room1;
     room1.setNorth(null);
@@ -58,10 +58,10 @@ public class Adventure {
     room7.setWest(null);
     room7.setEast(room8);
 
-    room8.setNorth(null);
-    room8.setSouth(room4);
-    room8.setWest(null);
-    room8.setEast(room2);
+    room8.setNorth(room5);
+    room8.setSouth(null);
+    room8.setWest(room7);
+    room8.setEast(room9);
 
     room9.setNorth(room6);
     room9.setSouth(null);
@@ -129,6 +129,8 @@ public class Adventure {
         case "go exit":
           isGameActive = true;
           break;
+
+        }
 
 
       }
