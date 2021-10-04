@@ -11,7 +11,6 @@ public class Adventure {
     String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
     Room currentRoom; /* variabel, som holder styr på hvilket rum spilleren befinder sig i, og ændres i switch statement
     via input. */
-    String[] invalidName = {"go north", "go south", "go west", "go east", "look", "help", "exit", "north", "south", "west", "east", " "};
 
     Room room1 = new Room("room 1", "\nIt's full of cheese");
     Room room2 = new Room("room 2", "\nIt's full of water");
