@@ -80,6 +80,7 @@ public class Adventure {
 
       playerDirection = in.nextLine();
 
+
       switch (playerDirection) {
         case "go north":
           if (currentRoom.checkNorth()) {
@@ -132,6 +133,14 @@ public class Adventure {
 
       }
 
+      if (!playerDirection.equalsIgnoreCase("go north") || !playerDirection.equalsIgnoreCase("go south") ||
+          !playerDirection.equalsIgnoreCase("go west") || !playerDirection.equalsIgnoreCase("go east") ||
+          !playerDirection.equalsIgnoreCase("go help") || !playerDirection.equalsIgnoreCase("go look") ||
+          !playerDirection.equalsIgnoreCase("go exit") || !playerDirection.equalsIgnoreCase(" ")) {
+        System.out.println("\nNot a valid input command - try again!");
+
+      }
+
 
     }
 
@@ -139,3 +148,6 @@ public class Adventure {
   }
 
 }
+
+
+
