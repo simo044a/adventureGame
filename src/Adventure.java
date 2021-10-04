@@ -130,13 +130,11 @@ public class Adventure {
           isGameActive = true;
           break;
 
-        }
-
-
       }
 
 
     }
+
 
   }
 
