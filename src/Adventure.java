@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Adventure {
@@ -74,7 +73,7 @@ public class Adventure {
     // Her gives en introduktion til spillet handling og input muligheder.
     System.out.println("\nWelcome to the adventure game! \nThe map consist of nine rooms, which");
     System.out.println("\nChoose a direction to go: north, south, west and east.");
-    System.out.println("\nother helpful commands: \"go look\", for getting the name and description of the current room, " +
+    System.out.println("\nOther helpful commands: \"go look\", for getting the name and description of the current room, " +
         "\nor write \"go exit\" to end the game.");
 
     System.out.println("You are in " + currentRoom.getName());
@@ -145,6 +144,12 @@ public class Adventure {
           isGameActive = false;
           break;
       }
+
+      /*
+      Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
+      og dernæst bliver spilleren ført tilbage til starten af loopet.
+      */
+
       if (playerDirection.equalsIgnoreCase("go north") || playerDirection.equalsIgnoreCase("go south") ||
           playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
           playerDirection.equalsIgnoreCase("help") || playerDirection.equalsIgnoreCase("look") ||
@@ -154,10 +159,6 @@ public class Adventure {
       } else {
         System.out.println("Sorry! Your input is invalid.. Try again!");
       }
-
-
-
-
 
 
     }
