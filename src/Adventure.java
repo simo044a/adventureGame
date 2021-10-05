@@ -151,14 +151,11 @@ public class Adventure {
           playerDirection.equalsIgnoreCase("exit") || playerDirection.equalsIgnoreCase(" ") ||
           playerDirection.equalsIgnoreCase("north") || playerDirection.equalsIgnoreCase("south") ||
           playerDirection.equalsIgnoreCase("west") || playerDirection.equalsIgnoreCase("east")) {
-        break;
       } else {
         System.out.println("Sorry! Your input is invalid.. Try again!");
       }
-      /*
-      Efter switch, er der også et if-statement, som vil printe en string ud, at spilleren har angivet et forkert input
-      og dernæst bliver spilleren ført tilbage til starten af loopet.
-      */
+
+
 
 
     }
