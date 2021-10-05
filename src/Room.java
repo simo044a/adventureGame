@@ -8,7 +8,7 @@ public class Room {
   private Room east;
 
   // Constructor til at tildele name til hvert rum ud fra setter.
-  Room(String name, String roomDescription) {setName(name);}
+  Room(String name) {setName(name);}
 
 
   // Set and Get for name
@@ -65,7 +65,7 @@ public class Room {
     return east;
   }
 
-  }
+
 
   /*
   Her er der blevet dannet nogle boolean værdier, som bruges til vores switch statement. Den checker om spillerens
@@ -197,6 +197,3 @@ public class Room {
   }
 
 }
-
-
-
