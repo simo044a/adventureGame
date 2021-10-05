@@ -151,6 +151,8 @@ public class Room {
         The elevator does open half way up, just enough for you to squeeze through.
         The helicopter looks out of place, since it looks all new with no scratches or anything.
         This is your way out of what ever this place is!""";
+          // Her kan vi evt. have tilføjet en nøgle hvis vi skal begynde at tilføje "items".
+  }
   }
 
   public String room6Text() {
