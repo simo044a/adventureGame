@@ -57,7 +57,7 @@ public class Adventure {
 
     room6.setRoomDescription(room6.room6Description);
     room6.setNorth(room3);
-    room6.setSouth(room4);
+    room6.setSouth(room9);
     room6.setWest(null);
     room6.setEast(null);
 
