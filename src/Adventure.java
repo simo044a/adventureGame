@@ -155,6 +155,8 @@ public class Adventure {
         System.out.println("Sorry! Your input is invalid.. Try again!");
       }
 
+      // mange tak for at spille spillet
+
 
 
 
