@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Adventure {
@@ -144,20 +145,20 @@ public class Adventure {
           isGameActive = false;
           break;
       }
-      if (playerDirection.equalsIgnoreCase("go north")  || playerDirection.equalsIgnoreCase("go south")||
-      playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
-      playerDirection.equalsIgnoreCase("help") || playerDirection.equalsIgnoreCase("look")||
-      playerDirection.equalsIgnoreCase("exit") || playerDirection.equalsIgnoreCase(" ")||
-      playerDirection.equalsIgnoreCase("north") || playerDirection.equalsIgnoreCase("south")||
-      playerDirection.equalsIgnoreCase("west") || playerDirection.equalsIgnoreCase("east")) {
+      if (playerDirection.equalsIgnoreCase("go north") || playerDirection.equalsIgnoreCase("go south") ||
+          playerDirection.equalsIgnoreCase("go west") || playerDirection.equalsIgnoreCase("go east") ||
+          playerDirection.equalsIgnoreCase("help") || playerDirection.equalsIgnoreCase("look") ||
+          playerDirection.equalsIgnoreCase("exit") || playerDirection.equalsIgnoreCase(" ") ||
+          playerDirection.equalsIgnoreCase("north") || playerDirection.equalsIgnoreCase("south") ||
+          playerDirection.equalsIgnoreCase("west") || playerDirection.equalsIgnoreCase("east")) {
       } else {
         System.out.println("Sorry! Your input is invalid.. Try again!");
       }
 
 
 
+
     }
 
   }
-
 }
