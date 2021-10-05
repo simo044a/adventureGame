@@ -115,16 +115,13 @@ public class Room {
   // tekst bokse room navne og beskrivelse
   public String room1Text() {
     return """
-        You wake up in a van. You go outside to check your surroundings.
-        You're at a road with trashed vehicle one way, the other way,
+        You're at a road with trashed vehicle one way, the other way is
         full of mutated creatures in the distant. The road goes
         along a steep hill. Across the road, a big building.""";
   }
 
   public String room2Text() {
     return """
-        Room 2:
-        Her er vest tilbage og øst er frem.
         This area has a thick fog. Looking around, you notice some destroyed
         and burned vehicles, and you can hear some kind of howls in the distance,
         but it doesn't sound like wolfs or dogs, but bigger and more human.
@@ -133,8 +130,7 @@ public class Room {
 
   public String room3Text() {
     return """
-        Room 3: Skal kunne gå mod vest eller syd.
-        mod syd: the fog is fading a bit, the buildings here are destroyed.
+        The fog is fading a bit, the buildings here are destroyed.
         The sky is filled with birds, looks like crows but kinda big. Maybe ravens?
         There is only on way trough south, and that is a hole in the ground.
         It looks like the road has collapsed down in to a old metro.""";
@@ -142,7 +138,6 @@ public class Room {
 
   public String room4Text() {
     return """
-        Room 4:
         This area has broken and half burned shops and apartments. It was once filled with life
         but it's dead and silent now. It looks like there is trash along the road but when you look closer,
         you notice its only cloth, shoes and old suitcases looking like something from old soviet Russia.
@@ -152,7 +147,6 @@ public class Room {
 
   public String room5Text() {
     return """
-        Room 5: Her kan man kun komme fra rum 8. Og det er north fra rum 8.
         The elevator goes all the way up to the roof without giving you a chanceto pick any floor.
         The elevator does open half way up, just enough for you to squeeze through.
         The helicopter looks out of place, since it looks all new with no scratches or anything.
@@ -161,7 +155,6 @@ public class Room {
 
   public String room6Text() {
     return """
-        Room 6:
         As soon as you jump down from the edge of the road hanging down from the upper level, you land in water.
         It comes as a surprise because it was so still that it looked like dirt.
         It's not that deep but reach up to your knees.
@@ -173,7 +166,6 @@ public class Room {
 
   public String room7Text() {
     return """
-        Room 7: Dette sted kommer man fra north men kan kun gå videre øst.
         You come to a road block. There have been a lot of military here, blocking the road.
         The area have proof of combat. Bullet holes on the walls, the road have craters from grenades.
         The buildings in this area is destroyed and the only thing that looks like it haven't seen
@@ -182,7 +174,6 @@ public class Room {
 
   public String room8Text() {
     return """
-        Room 8:
         You are now standing inside of a hospital lounge. Around you is hospital beds, half emptied
         first-aid kits and an empty vending machine with broken glass. You can also see an elevator
         which seems to be working and over it you can see a sign stating that there is a
@@ -191,7 +182,6 @@ public class Room {
 
   public String room9Text() {
     return """
-        room 9:
         You are still surrounded by water up to your knees. A train stationed in front of you is lit up
         by an opening further ahead which looks like the way back up to the surface.""";
   }

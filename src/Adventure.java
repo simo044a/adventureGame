@@ -11,15 +11,15 @@ public class Adventure {
     Room currentRoom; /* variabel, som holder styr på hvilket rum spilleren befinder sig i, og ændres i switch statement
     via input. */
 
-    Room room1 = new Room("\nroom 1");
-    Room room2 = new Room("\nroom 2");
-    Room room3 = new Room("\nroom 3");
-    Room room4 = new Room("\nroom 4");
-    Room room5 = new Room("\nroom 5");
-    Room room6 = new Room("\nroom 6");
-    Room room7 = new Room("\nroom 7");
-    Room room8 = new Room("\nroom 8");
-    Room room9 = new Room("\nroom 9");
+    Room room1 = new Room("\nArea 1");
+    Room room2 = new Room("\nArea 2");
+    Room room3 = new Room("\nArea 3");
+    Room room4 = new Room("\nArea 4");
+    Room room5 = new Room("\nArea 5");
+    Room room6 = new Room("\nArea 6");
+    Room room7 = new Room("\nArea 7");
+    Room room8 = new Room("\nArea 8");
+    Room room9 = new Room("\nArea 9");
 
 
     // Her bliver attributterne tildelt, for hvordan hvert rum ligger i forhold til hinandens retninger.
@@ -83,12 +83,13 @@ public class Adventure {
 
 
     // Her gives en introduktion til spillet handling og input muligheder.
-    System.out.println("\nWelcome to the adventure game! \nThe map consist of nine rooms, which");
+    System.out.println("\nWelcome to the adventure game! \nThe map consist of nine areas.");
     System.out.println("\nChoose a direction to go: north, south, west and east.");
     System.out.println("\nOther helpful commands: \"look\", for getting the name and description of the current room, " +
         "\nor write \"exit\" to end the game.\n");
+    System.out.println("You wake up in a van. You go outside to check your surroundings.");
 
-    System.out.println("You are currently here: " + currentRoom.getName());
+    //System.out.println("You are currently here: " + currentRoom.getName());
     System.out.println("\n" + currentRoom.getRoomDescription());
 
     /*
