@@ -83,7 +83,7 @@ public class Adventure {
 
 
     // Her gives en introduktion til spillet handling og input muligheder.
-    System.out.println("\nWelcome to the adventure game! \nThe map consist of nine rooms, which");
+    System.out.println("\nWelcome to the adventure game!");
     System.out.println("\nChoose a direction to go: north, south, west and east.");
     System.out.println("\nOther helpful commands: \"look\", for getting the name and description of the current room, " +
         "\nor write \"exit\" to end the game.\n");
