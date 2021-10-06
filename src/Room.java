@@ -153,7 +153,7 @@ public class Room {
         This is your way out of what ever this place is!""";
           // Her kan vi evt. have tilføjet en nøgle hvis vi skal begynde at tilføje "items".
   }
-  }
+  
 
   public String room6Text() {
     return """
