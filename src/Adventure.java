@@ -24,6 +24,7 @@ public class Adventure {
   static Item itemRoom2Soda = new Item("Soda", ", a bottle you can drink from");
   static Item itemRoom7Knife = new Item("Knife", ", a weapon you could use against enemies");
   static Item itemRoom5Key = new Item("key" , ", a key that could fit with a door");
+  static Item itemRoom6Hook = new Item("hook", ", a hook that can be used to climb");
 
   static ArrayList<Item> itemRoom1 = new ArrayList<>();
   static ArrayList<Item> itemRoom2 = new ArrayList<>();
@@ -95,6 +96,23 @@ public class Adventure {
       }
     }
 
+    if (currentRoom==room6){
+      if(!inventory.contains(itemRoom6Hook)) {
+        System.out.println(itemRoom6Hook.getItemName() + " " + itemRoom6Hook.getItemDescription());
+
+        System.out.println("Do you want to take the item? (take/leave)");
+        playerItem = in.nextLine();
+
+        if (playerItem.equalsIgnoreCase("take")) {
+          System.out.println("you took the " + itemRoom6Hook.getItemName());
+          inventory.add(itemRoom6Hook);
+          roomDes();
+        } else if (playerItem.equalsIgnoreCase("leave")) {return;}
+      } else if (inventory.contains(itemRoom6Hook)){
+        roomDes();
+      }
+    }
+
   }//..............................Items
 
 
@@ -135,8 +153,8 @@ public class Adventure {
     room6 = new Room("\nArea 6", """
         As soon as you jump down from the edge of the road hanging down from the upper level, you land in water.
         It comes as a surprise because it was so still that it looked like dirt.
-        It's not that deep but reach up to your knees.
-        When you look up, you can see the birds through the hole, flying around, kinda fighting in the air.
+        It's not that deep but reaches up to your knees.
+        When you look up, you can see the birds through the hole, flying around, swerving through the air.
         But when you look around, you notice how dark it's actually is when you are down here.
         The light from the hole you came from, shows that the metro is collapsed, making it only possible
         to take one path from here, in to darkness.""");
