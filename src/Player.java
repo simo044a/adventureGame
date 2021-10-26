@@ -7,8 +7,7 @@ public class Player {
   private int Objects; // -"-
   private double health;
 
-
-  public Player(String playerName,ArrayList<Item> inventory) { // Constructor
+   public Player(String playerName,ArrayList<Item> inventory) { // Constructor
     this.setPlayerName(playerName);
     this.setInventory(inventory);
   }
