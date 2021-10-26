@@ -13,7 +13,7 @@ public class Room {
 
 
   // Constructor til at tildele name til hvert rum ud fra setter.
-  Room(String name, String roomDescription) {
+  public Room(String name, String roomDescription) {
     setName(name);
     setRoomDescription(roomDescription);
   }
@@ -54,4 +54,6 @@ public class Room {
   public void setEast(Room east) {this.east = east;}
   public Room getEast() {return east;}
 
-}
+
+
+  }
