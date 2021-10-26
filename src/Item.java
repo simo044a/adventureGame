@@ -1,34 +1,28 @@
+import java.util.ArrayList;
+
 public class Item {
-  private String name;
-  private String discover;
 
-  public Item(String name, String discover) {
-    this.name = name;
-    this.discover = discover;
+  private String itemName;
+  private String itemDescription;
+
+
+  public void setItemName(String itemName){this.itemName = itemName;}
+  public String getItemName(){return itemName;}
+
+  public void setItemDescription(String itemDescription){this.itemDescription = itemDescription;}
+  public String getItemDescription(){return itemDescription;}
+
+  Item(String itemName, String itemDescription){
+    setItemName(itemName);
+    setItemDescription(itemDescription);
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public String toString(){
+    return getItemName() + " " + getItemDescription();
   }
 
-  public String getName() {
-    return name;
-  }
 
-  public void setDiscover(String discover) {
-    this.discover = discover;
-  }
 
-  public String getDiscover() {
-    return discover;
-  }
 
-  public String look() {
-    return look();
-  }
 
-  @Override
-  public String toString() {
-    return "Item name=" + name + ", discover=" + discover;
-  }
 }
