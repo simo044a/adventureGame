@@ -13,16 +13,14 @@ public class Room {
 
 
   // Constructor til at tildele name til hvert rum ud fra setter.
+
   public Room(String name, String roomDescription) {
     setName(name);
     setRoomDescription(roomDescription);
   }
 
-  public void addObjectRoom(Item item) {roomContent.add(item);}
-  public void removeObjectRoom(Item item) {roomContent.remove(item);}
-
-  public void setRoomContent(ArrayList<Item> itemRoom) {this.roomContent = roomContent;}
-  public ArrayList<Item> getRoomContent(){return getRoomContent();}
+  public void setRoomContent(ArrayList<Item> roomContent) {this.roomContent = roomContent;}
+  public ArrayList<Item> getRoomContent(){return roomContent;}
 
   // Set and Get for name
   public void setName(String name) {this.name = name;}
