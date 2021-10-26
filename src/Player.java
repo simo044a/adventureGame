@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
 public class Player {
-  private String name; // Attributes
+  private String playerName; // Attributes
   private ArrayList<Item> inventory; // -"-
   private Room currentRoom; // -"-
   private int Objects; // -"-
   private double health;
 
-  public Player(String name, Room currentRoom, ArrayList<Item> inventory) { // Constructor
-    this.setCurrentRoom(currentRoom);
-    this.setPlayerName(name);
+
+  public Player(String playerName,ArrayList<Item> inventory) { // Constructor
+    this.setPlayerName(playerName);
     this.setInventory(inventory);
   }
 
@@ -20,12 +20,12 @@ public class Player {
     inventory.remove(item);
   }
 
-  public void setPlayerName(String name) {
-    this.name = name;
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
   }
 
-  public void getName(String name) {
-    this.name = name;
+  public String getPlayerName() {
+    return playerName;
   }
 
   public void setInventory(ArrayList<Item> inventory) {
@@ -42,10 +42,6 @@ public class Player {
 
   public Room getCurrentRoom() {
     return currentRoom;
-  }
-
-  public String toString(){
-    return this.name + " " + this.inventory;
   }
 
 
