@@ -5,22 +5,22 @@ public class Player {
   private ArrayList<Item> inventory; // -"-
   private Room currentRoom; // -"-
   private int Objects; // -"-
+  private double health;
 
   public Player(String name, Room currentRoom, ArrayList<Item> inventory) { // Constructor
     this.setCurrentRoom(currentRoom);
-    this.setName(name);
+    this.setPlayerName(name);
     this.setInventory(inventory);
   }
 
-  public void take(Item item) {
+  public void takeItem(Item item) {
     inventory.add(item);
   }
-
-  public void drop(Item item) {
+  public void dropItem(Item item) {
     inventory.remove(item);
   }
 
-  public void setName(String name) {
+  public void setPlayerName(String name) {
     this.name = name;
   }
 
@@ -43,7 +43,10 @@ public class Player {
   public Room getCurrentRoom() {
     return currentRoom;
   }
+
+  public String toString(){
+    return this.name + " " + this.inventory;
+  }
+
+
 }
-
-
-
