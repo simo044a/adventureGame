@@ -21,9 +21,9 @@ public class Adventure {
   static Room room9;
 
   static ArrayList<Item> inventory = new ArrayList<Item>();
-  static Item itemRoom2Soda = new Item("Soda", ", a bottle you can drink from");
-  static Item itemRoom7Knife = new Item("Knife", ", a weapon you could use against enemies");
-  static Item itemRoom5Key = new Item("key" , ", a key that could fit with a door");
+  static Item itemRoomSoda = new Item("Soda", ", a bottle you can drink from");
+  static Item itemRoomKnife = new Item("Knife", ", a weapon you could use against enemies");
+  static Item itemRoomKey = new Item("key" , ", a key that could fit with a door");
 
   static ArrayList<Item> itemRoom1 = new ArrayList<>();
   static ArrayList<Item> itemRoom2 = new ArrayList<>();
@@ -36,70 +36,101 @@ public class Adventure {
   static ArrayList<Item> itemRoom9 = new ArrayList<>();
 
 
+
   static Player player1 = new Player("player 1", inventory);
 
   public static void itemRooms(){
 
     System.out.println("You look around the area to see if there is any items you could pick up..");
 
-    if (currentRoom==room2){
-      if (!inventory.contains(itemRoom2Soda)) {
-        System.out.println(itemRoom2Soda.getItemName() + " " +itemRoom2Soda.getItemDescription());
+    itemRoom2.add(itemRoomSoda);
+    itemRoom7.add(itemRoomKnife);
+    itemRoom5.add(itemRoomKey);
+
+    if (itemRoom2.contains(itemRoomSoda)){
+      if (!inventory.contains(itemRoomSoda)) {
+        System.out.println(itemRoomSoda.getItemName() + " " + itemRoomSoda.getItemDescription());
 
         System.out.println("Do you want to take the item? (take/leave)");
         playerItem=in.nextLine();
 
         if (playerItem.equalsIgnoreCase("take")) {
-          System.out.println("you took the " +itemRoom2Soda.getItemName());
-          player1.takeItem(itemRoom2Soda);
+          System.out.println("you took the " + itemRoomSoda.getItemName());
+          itemRoom2.remove(itemRoomSoda);
+          player1.takeItem(itemRoomSoda);
           roomDes();
         } else if (playerItem.equalsIgnoreCase("leave")){return;}
 
-      } else if (player1.getInventory().contains(itemRoom2Soda)) {
+      } else if (player1.getInventory().contains(itemRoomSoda)) {
         roomDes();
       }
     }
 
-    if (currentRoom==room7){
-      if (!inventory.contains(itemRoom7Knife)) {
-        System.out.println(itemRoom7Knife.getItemName() + " " +itemRoom7Knife.getItemDescription());
+    if (itemRoom7.contains(itemRoomKnife)){
+      if (!inventory.contains(itemRoomKnife)) {
+        System.out.println(itemRoomKnife.getItemName() + " " + itemRoomKnife.getItemDescription());
 
         System.out.println("Do you want to take the item? (take/leave)");
         playerItem=in.nextLine();
 
         if (playerItem.equalsIgnoreCase("take")) {
-          System.out.println("you took the " +itemRoom7Knife.getItemName());
-          player1.getInventory().add(itemRoom7Knife);
+          System.out.println("you took the " + itemRoomKnife.getItemName());
+          itemRoom7.remove(itemRoomKnife);
+          player1.getInventory().add(itemRoomKnife);
           roomDes();
         } else if (playerItem.equalsIgnoreCase("leave")){return;}
 
-      } else if (inventory.contains(itemRoom7Knife)) {
+      } else if (inventory.contains(itemRoomKnife)) {
         roomDes();
       }
     }
 
-    if (currentRoom==room5){
-      if (!inventory.contains(itemRoom5Key)) {
-        System.out.println(itemRoom5Key.getItemName() + " " +itemRoom5Key.getItemDescription());
+    if (itemRoom5.contains(itemRoomKnife)){
+      if (!inventory.contains(itemRoomKey)) {
+        System.out.println(itemRoomKey.getItemName() + " " + itemRoomKey.getItemDescription());
 
         System.out.println("Do you want to take the item? (take/leave)");
         playerItem=in.nextLine();
 
         if (playerItem.equalsIgnoreCase("take")) {
-          System.out.println("you took the " +itemRoom5Key.getItemName());
-          inventory.add(itemRoom5Key);
+          System.out.println("you took the " + itemRoomKey.getItemName());
+          itemRoom5.remove(itemRoomKey);
+          inventory.add(itemRoomKey);
           roomDes();
         } else if (playerItem.equalsIgnoreCase("leave")){return;}
-      } else if (player1.getInventory().contains(itemRoom5Key)) {
+      } else if (player1.getInventory().contains(itemRoomKey)) {
         roomDes();
       }
     }
 
   }//..............................Items
-  
-  public void dropItemRooms(){
-    
-  }
+
+  public void dropItemRoomSoda(){
+
+    if(player1.getInventory().contains(itemRoomSoda)){
+      player1.getInventory().remove(itemRoomSoda);
+      if(currentRoom == room1) {
+        itemRoom1.add(itemRoomSoda);
+      } else if (currentRoom == room2){
+        itemRoom2.add(itemRoomSoda);
+      } else if (currentRoom == room3){
+        itemRoom3.add(itemRoomSoda);
+      } else if (currentRoom == room4){
+        itemRoom4.add(itemRoomSoda);
+      } else if (currentRoom == room5){
+        itemRoom5.add(itemRoomSoda);
+      } else if (currentRoom == room6){
+        itemRoom6.add(itemRoomSoda);
+      } else if (currentRoom == room7){
+        itemRoom7.add(itemRoomSoda);
+      } else if (currentRoom == room8){
+        itemRoom8.add(itemRoomSoda);
+      } else if (currentRoom == room9){
+        itemRoom9.add(itemRoomSoda);
+      }
+    }
+
+  } // SLETSLETSLETSLET
 
 
   // Items/inv relaterede methods
@@ -265,7 +296,7 @@ public class Adventure {
           System.out.println("\nIs there anything you want to drop?(yes/no)");
 
           String invenInput = in.nextLine();
-          
+
           if(invenInput.equalsIgnoreCase("yes")) {
             //method
           } else if(invenInput.equalsIgnoreCase("no")) {
