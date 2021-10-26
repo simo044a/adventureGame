@@ -24,7 +24,6 @@ public class Adventure {
   static Item itemRoom2Soda = new Item("Soda", ", a bottle you can drink from");
   static Item itemRoom7Knife = new Item("Knife", ", a weapon you could use against enemies");
   static Item itemRoom5Key = new Item("key" , ", a key that could fit with a door");
-  static Item itemRoom6Hook = new Item("hook", ", a hook that can be used to climb");
 
   static ArrayList<Item> itemRoom1 = new ArrayList<>();
   static ArrayList<Item> itemRoom2 = new ArrayList<>();
@@ -37,7 +36,7 @@ public class Adventure {
   static ArrayList<Item> itemRoom9 = new ArrayList<>();
 
 
-  static Player player1 = new Player("player 1", room1, inventory);
+  static Player player1 = new Player("player 1", inventory);
 
   public static void itemRooms(){
 
@@ -70,7 +69,7 @@ public class Adventure {
 
         if (playerItem.equalsIgnoreCase("take")) {
           System.out.println("you took the " +itemRoom7Knife.getItemName());
-          inventory.add(itemRoom7Knife);
+          player1.getInventory().add(itemRoom7Knife);
           roomDes();
         } else if (playerItem.equalsIgnoreCase("leave")){return;}
 
@@ -91,29 +90,16 @@ public class Adventure {
           inventory.add(itemRoom5Key);
           roomDes();
         } else if (playerItem.equalsIgnoreCase("leave")){return;}
-      } else if (inventory.contains(itemRoom5Key)) {
-        roomDes();
-      }
-    }
-
-    if (currentRoom==room6){
-      if(!inventory.contains(itemRoom6Hook)) {
-        System.out.println(itemRoom6Hook.getItemName() + " " + itemRoom6Hook.getItemDescription());
-
-        System.out.println("Do you want to take the item? (take/leave)");
-        playerItem = in.nextLine();
-
-        if (playerItem.equalsIgnoreCase("take")) {
-          System.out.println("you took the " + itemRoom6Hook.getItemName());
-          inventory.add(itemRoom6Hook);
-          roomDes();
-        } else if (playerItem.equalsIgnoreCase("leave")) {return;}
-      } else if (inventory.contains(itemRoom6Hook)){
+      } else if (player1.getInventory().contains(itemRoom5Key)) {
         roomDes();
       }
     }
 
   }//..............................Items
+  
+  public void dropItemRooms(){
+    
+  }
 
 
   // Items/inv relaterede methods
@@ -153,8 +139,8 @@ public class Adventure {
     room6 = new Room("\nArea 6", """
         As soon as you jump down from the edge of the road hanging down from the upper level, you land in water.
         It comes as a surprise because it was so still that it looked like dirt.
-        It's not that deep but reaches up to your knees.
-        When you look up, you can see the birds through the hole, flying around, swerving through the air.
+        It's not that deep but reach up to your knees.
+        When you look up, you can see the birds through the hole, flying around, kinda fighting in the air.
         But when you look around, you notice how dark it's actually is when you are down here.
         The light from the hole you came from, shows that the metro is collapsed, making it only possible
         to take one path from here, in to darkness.""");
@@ -275,9 +261,16 @@ public class Adventure {
 
         case "inv":
           System.out.println("You currently have this in your inventory");
-          System.out.println(inventory);
-          System.out.println("\nIs there anything you want to drop?");
+          System.out.println(player1.getInventory());
+          System.out.println("\nIs there anything you want to drop?(yes/no)");
 
+          String invenInput = in.nextLine();
+          
+          if(invenInput.equalsIgnoreCase("yes")) {
+            //method
+          } else if(invenInput.equalsIgnoreCase("no")) {
+            return;
+          }
 
 
           break;
