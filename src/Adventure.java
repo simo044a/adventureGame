@@ -9,20 +9,20 @@ public class Adventure {
    String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
    String playerItem;
 
-   ArrayList<Item> inventory = new ArrayList<>();
-   Item itemRoomSoda = new Item("Soda", ", a bottle you can drink from");
+   ArrayList<Item> inventory = new ArrayList<Item>();
+   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", 25);
    Item itemRoomKnife = new Item("Knife", ", a weapon you could use against enemies");
    Item itemRoomKey = new Item("key" , ", a key that could fit with a door");
 
-   ArrayList<Item> itemRoom1 = new ArrayList<>();
-   ArrayList<Item> itemRoom2 = new ArrayList<>();
-   ArrayList<Item> itemRoom3 = new ArrayList<>();
-   ArrayList<Item> itemRoom4 = new ArrayList<>();
-   ArrayList<Item> itemRoom5 = new ArrayList<>();
-   ArrayList<Item> itemRoom6 = new ArrayList<>();
-   ArrayList<Item> itemRoom7 = new ArrayList<>();
-   ArrayList<Item> itemRoom8= new ArrayList<>();
-   ArrayList<Item> itemRoom9 = new ArrayList<>();
+   ArrayList<Item> itemRoom1 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom2 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom3 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom4 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom5 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom6 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom7 = new ArrayList<Item>();
+   ArrayList<Item> itemRoom8= new ArrayList<Item>();
+   ArrayList<Item> itemRoom9 = new ArrayList<Item>();
 
    Room room1;
    Room room2;
@@ -34,13 +34,9 @@ public class Adventure {
    Room room8;
    Room room9;
 
-
-
-  public Player player1 = new Player("player 1", inventory);
-
+   Player player1 = new Player("player 1", inventory, 100);
 
   public void rooms() {
-
 
     room1 = new Room("\nArea 1", """
         You're at a road with trashed vehicle one way, the other way is
@@ -143,106 +139,222 @@ public class Adventure {
     room9.setRoomContent(itemRoom9);
 
   }
-  public void itemRoomsTake() {
+
+  // Commands
+  public void goNorth(){
+
+    if (player1.getCurrentRoom().getNorth() != null) {
+      player1.setCurrentRoom(player1.getCurrentRoom().getNorth());
+      System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
+          "" + player1.getCurrentRoom().getRoomDescription() + "" + player1.getCurrentRoom().getRoomItem());
+    } else {
+      System.out.println("You cannot go in that direction. Try another one");
+    }
+  }
+  public void goSouth(){
+
+    if (player1.getCurrentRoom().getSouth() != null) {
+      player1.setCurrentRoom(player1.getCurrentRoom().getSouth());
+      System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
+          "" + player1.getCurrentRoom().getRoomDescription());
+    } else {
+      System.out.println("You cannot go in that direction. Try another one");
+    }
+  }
+  public void goWest(){
+
+    if (player1.getCurrentRoom().getWest() != null) {
+      player1.setCurrentRoom(player1.getCurrentRoom().getWest());
+      System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
+          "" + player1.getCurrentRoom().getRoomDescription());
+    } else {
+      System.out.println("You cannot go in that direction. Try another one");
+    }
+  }
+  public void goEast(){
+
+    if (player1.getCurrentRoom().getEast() != null) {
+      player1.setCurrentRoom(player1.getCurrentRoom().getEast());
+      System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
+          "" + player1.getCurrentRoom().getRoomDescription());
+    } else {
+      System.out.println("You cannot go in that direction. Try another one");
+    }
+  }
+  public void goLook(){
+
+    System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName());
+    if (player1.getCurrentRoom().getRoomContent() != null) {
+      itemRoomTake();
+    } else {
+      System.out.println("There seem to be no items laying around...");
+    }
+  }
+  public void goInv() {
+
+    System.out.println("You currently have this in your inventory");
+    System.out.println(player1.getInventory());
+    if (player1.getInventory().size() == 0) {
+      System.out.println("You have nothing in your inventory...");
+      roomDes();
+    }
+
+    if (player1.getInventory().size() != 0) {
+
+      System.out.println("\nIs there anything you want to do with your inventory? (input: use/drop/leave)");
+
+      String invenInput = in.nextLine();
+
+      switch (invenInput) {
+
+        case "drop":
+          itemRoomDrop();
+          break;
+        case "leave":
+          System.out.println("Closing inventory");
+          roomDes();
+
+          break;
+
+        case "use":
+
+          itemUse();
+          break;
+
+
+        default:
+          System.out.println("Sorry! Invalid input.. try again!");
+          break;
+      }
+
+
+    }
+  }
+
+  // Item commands
+  public void itemRoomTake() {
+
 
     System.out.println("You look around the area to see if there is any items you could pick up..");
 
+    if(player1.getCurrentRoom().getRoomContent().size()==0){
+      System.out.println("No item in room");
+    } else {
+      System.out.println(player1.getCurrentRoom().getRoomContent());
 
-    if (player1.getCurrentRoom().getRoomContent().contains(itemRoomSoda)) {
-      if (!inventory.contains(itemRoomSoda)) {
-        System.out.println(itemRoomSoda.getItemName() + " " + itemRoomSoda.getItemDescription());
+      System.out.println("Would you like to take anything? (yes/no)");
 
-        System.out.println("Do you want to take the item? (take/leave)");
-        playerItem = in.nextLine();
+      String yesNo = in.nextLine();
 
-        if (playerItem.equalsIgnoreCase("take")) {
-          System.out.println("you took the " + itemRoomSoda.getItemName());
-          player1.getCurrentRoom().getRoomContent().remove(itemRoomSoda);
-          player1.takeItem(itemRoomSoda);
-        } else if (playerItem.equalsIgnoreCase("leave")) {
-          System.out.println("Leaving item alone...");
-        }
+      switch (yesNo) {
+
+
+        case "yes", "y":
+          System.out.println("What item index would you like to take?");
+
+          int x = in.nextInt();
+
+          System.out.println("You choose index: " + player1.getCurrentRoom().getRoomContent().get(x));
+
+          player1.takeItem(player1.getCurrentRoom().getRoomContent().get(x));
+          player1.getCurrentRoom().dropRoomContent(player1.getCurrentRoom().getRoomContent().get(x));
+
+          System.out.println("Your inventory: ");
+          System.out.println(player1.getInventory());
+          System.out.println("Current room content: ");
+          System.out.println(player1.getCurrentRoom().getRoomContent());
+
+          break;
+
+        case "no", "n":
+          System.out.println("Leaving item(s) alone");
+          break;
+
+        default:
+          System.out.println("Sorry! Invalid input...");
+          break;
 
       }
 
     }
 
-      if (player1.getCurrentRoom().getRoomContent().contains(itemRoomKnife)) {
-        if (!inventory.contains(itemRoomKnife)) {
-          System.out.println(itemRoomKnife.getItemName() + " " + itemRoomKnife.getItemDescription());
-
-          System.out.println("Do you want to take the item? (take/leave)");
-          playerItem = in.nextLine();
-
-          if (playerItem.equalsIgnoreCase("take")) {
-            System.out.println("you took the " + itemRoomKnife.getItemName());
-            player1.getCurrentRoom().getRoomContent().remove(itemRoomKnife);
-            player1.takeItem(itemRoomKnife);
-          } else if (playerItem.equalsIgnoreCase("leave")) {
-            System.out.println("Leaving item alone...");
-          }
-        }
-      }
-
-      if (player1.getCurrentRoom().getRoomContent().contains(itemRoomKey)) {
-        if (!inventory.contains(itemRoomKey)) {
-          System.out.println(itemRoomKey.getItemName() + " " + itemRoomKey.getItemDescription());
-
-          System.out.println("Do you want to take the item? (take/leave)");
-          playerItem = in.nextLine();
-
-          if (playerItem.equalsIgnoreCase("take")) {
-            System.out.println("you took the " + itemRoomKey.getItemName());
-            player1.getCurrentRoom().getRoomContent().remove(itemRoomKey);
-            player1.takeItem(itemRoomKey);
-          } else if (playerItem.equalsIgnoreCase("leave")) {
-            System.out.println("Leaving item alone...");
-          }
-
-        }
-      }
-
-    } //..............................Items
+    }
   public void itemRoomDrop(){
 
-    System.out.println("What item would you like to drop?");
+    player1.getInventory();
 
-    String inputItemDrop = in.nextLine();
+    if(player1.getInventory().size() == 0) {
+      System.out.println("Sorry, your inventory is empty");
+    } else {
+      System.out.println("What item item index would you like to drop?");
 
-    switch (inputItemDrop) {
+      int y = in.nextInt();
 
-      case "knife", "Knife":
-        if (player1.getInventory().contains(itemRoomKnife)) {
-          System.out.println("Dropping knife...");
-          player1.getInventory().remove(itemRoomKnife);
-          player1.getCurrentRoom().getRoomContent().add(itemRoomKnife);
-        } else if (!player1.getInventory().contains(itemRoomKnife)) {
-          System.out.println("You don't seem to have a knife in your inventory...");
-        }
-        break;
+      System.out.println("You choose item index: " + y + ", " + player1.getInventory().get(y));
 
-      case "soda", "Soda":
-        if (player1.getInventory().contains(itemRoomSoda)) {
-          System.out.println("Dropping soda...");
-          player1.getInventory().remove(itemRoomSoda);
-          player1.getCurrentRoom().getRoomContent().add(itemRoomSoda);
-        } else if (!player1.getInventory().contains(itemRoomSoda)) {
-          System.out.println("You don't seem to have any soda in your inventory...");
-        }
-        break;
 
-      case "key", "Key":
-        if (player1.getInventory().contains(itemRoomKey)) {
-          System.out.println("Dropping soda...");
-          player1.getInventory().remove(itemRoomKey);
-          player1.getCurrentRoom().getRoomContent().add(itemRoomKey);
-        } else if (!player1.getInventory().contains(itemRoomKey)) {
-          System.out.println("You don't seem to have any soda in your inventory...");
-        }
-        break;
+      player1.getCurrentRoom().addRoomContent(player1.getInventory().get(y));
+      player1.getInventory().remove(y);
+
+      System.out.println("Your inventory: ");
+      System.out.println(player1.getInventory());
+      System.out.println("Current room content: ");
+      System.out.println(player1.getCurrentRoom().getRoomContent());
 
 
     }
+
+  }
+  public void itemUse(){
+
+    System.out.println(player1.getInventory());
+
+    System.out.println("What item would you like to use?");
+
+    String inputItemUse = in.nextLine();
+
+    switch (inputItemUse) {
+
+      case "soda":
+
+        if(!player1.getInventory().contains(itemRoomSoda)){
+          System.out.println("You don't seem to contain any soda...");
+          roomDes();
+          break;
+        } else {
+
+          System.out.println("This is you current health: " + player1.getHealth());
+
+          System.out.println("Drinking " + itemRoomSoda.getItemName());
+
+          System.out.println("Current health is now: ");
+          player1.setHealth(player1.getHealth() + itemRoomSoda.getHealingValue());
+          System.out.println(player1.getHealth());
+          roomDes();
+        }
+
+        break;
+
+
+      case "knife":
+
+        break;
+
+      case "key":
+
+        break;
+
+      default:
+        System.out.println("Ooops! Try annother form of input");
+        break;
+
+    }
+
+
+  }
+
+  public void itemRoomDropBeta(){
+
 
   }
 
@@ -257,7 +369,9 @@ public class Adventure {
 
     while (isGameActive) {
 
+
       playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
+
 
 
       /*I dette switch loop, tjekker input playerDirection om de giver et valid input. Alt efter hvilket rum spilleren
@@ -266,74 +380,33 @@ public class Adventure {
 
       switch (playerDirection) {
         case "go north", "north", "n":
-          if (player1.getCurrentRoom().getNorth() != null) {
-              player1.setCurrentRoom(player1.getCurrentRoom().getNorth());
-            System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
-                "" + player1.getCurrentRoom().getRoomDescription() + "" + player1.getCurrentRoom().getRoomItem());
-          } else {
-            System.out.println("You cannot go in that direction. Try another one");
-          }
+          goNorth();
           break;
 
         case "go south", "south", "s":
-          if (player1.getCurrentRoom().getSouth() != null) {
-            player1.setCurrentRoom(player1.getCurrentRoom().getSouth());
-            System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
-                "" + player1.getCurrentRoom().getRoomDescription());
-          } else {
-            System.out.println("You cannot go in that direction. Try another one");
-          }
+          goSouth();
           break;
 
         case "go west", "west", "w":
-          if (player1.getCurrentRoom().getWest() != null) {
-            player1.setCurrentRoom(player1.getCurrentRoom().getWest());
-            System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
-                "" + player1.getCurrentRoom().getRoomDescription());
-          } else {
-            System.out.println("You cannot go in that direction. Try another one");
-          }
+          goWest();
           break;
 
         case "go east", "east", "e":
-          if (player1.getCurrentRoom().getEast() != null) {
-            player1.setCurrentRoom(player1.getCurrentRoom().getEast());
-            System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName() + "\n" +
-                "" + player1.getCurrentRoom().getRoomDescription());
-          } else {
-            System.out.println("You cannot go in that direction. Try another one");
-          }
+          goEast();
           break;
 
         case "look":
-          System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName());
-          if (player1.getCurrentRoom().getRoomContent() != null) {
-            itemRoomsTake();
-          } else {
-            System.out.println("There seem to be no items laying around...");
-          }
+          goLook();
           break;
 
         case "help":
           System.out.println("""
               Choose a direction to go: north, south, west and east.
-              Other commands: look, help or exit.""");
+              Other commands: look, help, inv or exit.""");
           break;
 
         case "inv":
-          System.out.println("You currently have this in your inventory");
-          System.out.println(player1.getInventory());
-          System.out.println("\nIs there anything you want to drop?(yes/no)");
-
-          String invenInput = in.nextLine();
-
-          if(invenInput.equalsIgnoreCase("yes")) {
-            player1.getInventory();
-            itemRoomDrop();
-          } else if(invenInput.equalsIgnoreCase("no")) {
-            System.out.println("Closing inventory");
-          }
-
+          goInv();
 
           break;
 
@@ -346,10 +419,11 @@ public class Adventure {
           break;
       }
 
+      }
+
     }
-  }
-  public Room roomDes() {
-    return player1.getCurrentRoom();
+  public void roomDes() {
+    System.out.println(player1.getCurrentRoom().getName() + "\n " + player1.getCurrentRoom().getRoomDescription());
   }
 
   public static void main(String[] args) {
@@ -373,14 +447,8 @@ public class Adventure {
 
 
 
-    roomMethods.roomDes();
-
-
-
     roomMethods.roomLoop();
 
-    /*Her bliver spillets inputs del startet - koden kører i et loop ud fra boolean variablen "isGameActive"
-    indtil spilleren giver input "go exit".*/
 
   }
 }
