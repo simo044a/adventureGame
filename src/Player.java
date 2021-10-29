@@ -7,10 +7,14 @@ public class Player {
   private int Objects; // -"-
   private double health;
 
-   public Player(String playerName,ArrayList<Item> inventory) { // Constructor
+   public Player(String playerName,ArrayList<Item> inventory, double health) { // Constructor
     this.setPlayerName(playerName);
     this.setInventory(inventory);
+    this.setHealth(health);
   }
+
+  public void setHealth(double health){this.health = health;}
+  public double getHealth(){return health;}
 
   public void takeItem(Item item) {
     inventory.add(item);
