@@ -10,9 +10,6 @@ public class Adventure {
    String playerItem;
 
    ArrayList<Item> inventory = new ArrayList<Item>();
-   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", 25);
-   Item itemRoomKnife = new Item("Knife", ", a weapon you could use against enemies");
-   Item itemRoomKey = new Item("key" , ", a key that could fit with a door");
 
    ArrayList<Item> itemRoom1 = new ArrayList<Item>();
    ArrayList<Item> itemRoom2 = new ArrayList<Item>();
@@ -23,6 +20,10 @@ public class Adventure {
    ArrayList<Item> itemRoom7 = new ArrayList<Item>();
    ArrayList<Item> itemRoom8= new ArrayList<Item>();
    ArrayList<Item> itemRoom9 = new ArrayList<Item>();
+   ArrayList<Item> weaponArrayList = new ArrayList<Item>();
+   ArrayList<Item> enemyWeaponInv = new ArrayList<Item>();
+
+
 
    Room room1;
    Room room2;
@@ -34,7 +35,15 @@ public class Adventure {
    Room room8;
    Room room9;
 
-   Player player1 = new Player("player 1", inventory, 100);
+  Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", 25);
+  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", 20);
+  Item itemRoomKey = new Item("key" , ", a key that could fit with a door");
+  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", 25);
+
+  Enemy enemyRaider = new Enemy("Raider", enemyWeaponInv,60);
+
+  Player player1 = new Player("player 1", inventory, 100);
+
 
   public void rooms() {
 
@@ -133,6 +142,7 @@ public class Adventure {
     room8.setWest(room7);
     room8.setEast(room9);
     room8.setRoomContent(itemRoom8);
+    enemyRaider.setCurrentRoom(room8);
 
     room9.setNorth(room6);
     room9.setWest(room8);
@@ -323,13 +333,13 @@ public class Adventure {
           break;
         } else {
 
-          System.out.println("This is you current health: " + player1.getHealth());
+          System.out.println("This is you current health: " + player1.getPlayerHealth());
 
           System.out.println("Drinking " + itemRoomSoda.getItemName());
 
           System.out.println("Current health is now: ");
-          player1.setHealth(player1.getHealth() + itemRoomSoda.getHealingValue());
-          System.out.println(player1.getHealth());
+          player1.setPlayerHealth(player1.getPlayerHealth() + itemRoomSoda.getHealingValue());
+          System.out.println(player1.getPlayerHealth());
           roomDes();
         }
 
@@ -349,11 +359,6 @@ public class Adventure {
         break;
 
     }
-
-
-  }
-
-  public void itemRoomDropBeta(){
 
 
   }
