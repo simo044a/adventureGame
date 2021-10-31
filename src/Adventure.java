@@ -335,10 +335,10 @@ public class Adventure {
 
       itemHealing(objFood);
 
+    } else if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon")) {
+      Weapon objWeapon = (Weapon) player1.getInventory().get(inputItemUse);
+      itemEquip(objWeapon);
     }
-    
-    if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon"));
-    
 
 
 
@@ -359,16 +359,11 @@ public class Adventure {
 
 
     }
+  public void itemEquip(Weapon weapon){
 
-
-  public void consumeFood(Food food){
-
-
-
-
-
+player1.getWeaponEquipment().add(weapon);
+    System.out.println(player1.getWeaponEquipment() + " is equipped");
   }
-
 
 
 
@@ -433,7 +428,6 @@ public class Adventure {
           break;
 
         default:
-          System.out.println("Sorry! Your input is invalid.. Try again!");
           break;
       }
 
