@@ -4,7 +4,7 @@ public class Item {
 
   private String itemName;
   private String itemDescription;
-
+  private String itemType;
 
   public void setItemName(String itemName){this.itemName = itemName;}
   public String getItemName(){return itemName;}
@@ -12,17 +12,18 @@ public class Item {
   public void setItemDescription(String itemDescription){this.itemDescription = itemDescription;}
   public String getItemDescription(){return itemDescription;}
 
-  Item(String itemName, String itemDescription){
+  public void setItemType(String itemType){this.itemType = itemType;}
+  public String getItemType(){return itemType;}
+
+  Item(String itemName, String itemDescription, String itemType){
     setItemName(itemName);
     setItemDescription(itemDescription);
+    setItemType(itemType);
   }
+
 
   public String toString(){
     return getItemName() + " " + getItemDescription();
   }
-
-
-
-
-
+  
 }
