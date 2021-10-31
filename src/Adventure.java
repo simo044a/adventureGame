@@ -11,17 +11,17 @@ public class Adventure {
 
    ArrayList<Item> inventory = new ArrayList<Item>();
 
-   ArrayList<Item> itemRoom1 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom2 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom3 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom4 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom5 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom6 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom7 = new ArrayList<Item>();
-   ArrayList<Item> itemRoom8= new ArrayList<Item>();
-   ArrayList<Item> itemRoom9 = new ArrayList<Item>();
-   ArrayList<Item> weaponArrayList = new ArrayList<Item>();
-   ArrayList<Item> enemyWeaponInv = new ArrayList<Item>();
+   ArrayList<Item> itemRoom1 = new ArrayList<>();
+   ArrayList<Item> itemRoom2 = new ArrayList<>();
+   ArrayList<Item> itemRoom3 = new ArrayList<>();
+   ArrayList<Item> itemRoom4 = new ArrayList<>();
+   ArrayList<Item> itemRoom5 = new ArrayList<>();
+   ArrayList<Item> itemRoom6 = new ArrayList<>();
+   ArrayList<Item> itemRoom7 = new ArrayList<>();
+   ArrayList<Item> itemRoom8= new ArrayList<>();
+   ArrayList<Item> itemRoom9 = new ArrayList<>();
+   ArrayList<Item> weaponArrayList = new ArrayList<>();
+   ArrayList<Item> enemyWeaponInv = new ArrayList<>();
 
 
 
@@ -35,12 +35,14 @@ public class Adventure {
    Room room8;
    Room room9;
 
-  Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", 25);
-  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", 20);
-  Item itemRoomKey = new Item("key" , ", a key that could fit with a door");
-  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", 25);
+  Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
+  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 20);
+  Item itemRoomKey = new Item("key" , ", a key that could fit with a door", "Key");
+  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon",25);
+
 
   Enemy enemyRaider = new Enemy("Raider", enemyWeaponInv,60);
+
 
   Player player1 = new Player("player 1", inventory, 100);
 
@@ -143,6 +145,7 @@ public class Adventure {
     room8.setEast(room9);
     room8.setRoomContent(itemRoom8);
     enemyRaider.setCurrentRoom(room8);
+    enemyWeaponInv.add(enemyWeapon);
 
     room9.setNorth(room6);
     room9.setWest(room8);
@@ -240,6 +243,9 @@ public class Adventure {
 
     }
   }
+  public void goPlayerHealth(){
+    System.out.println("Player current health: " + player1.getPlayerHealth());
+  }
 
   // Item commands
   public void itemRoomTake() {
@@ -321,47 +327,49 @@ public class Adventure {
 
     System.out.println("What item would you like to use?");
 
-    String inputItemUse = in.nextLine();
+    int inputItemUse = in.nextInt();
 
-    switch (inputItemUse) {
+    if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("food")) {
 
-      case "soda":
+      Food objFood = (Food) player1.getInventory().get(inputItemUse);
 
-        if(!player1.getInventory().contains(itemRoomSoda)){
-          System.out.println("You don't seem to contain any soda...");
-          roomDes();
-          break;
-        } else {
+      itemHealing(objFood);
 
-          System.out.println("This is you current health: " + player1.getPlayerHealth());
-
-          System.out.println("Drinking " + itemRoomSoda.getItemName());
-
-          System.out.println("Current health is now: ");
-          player1.setPlayerHealth(player1.getPlayerHealth() + itemRoomSoda.getHealingValue());
-          System.out.println(player1.getPlayerHealth());
-          roomDes();
-        }
-
-        break;
+    }
+    
+    if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon"));
+    
 
 
-      case "knife":
 
-        break;
 
-      case "key":
+  }
 
-        break;
+  public void itemHealing(Food food){
 
-      default:
-        System.out.println("Ooops! Try annother form of input");
-        break;
+    System.out.println("Player is healing..");
+
+    player1.setPlayerHealth(player1.getPlayerHealth() + food.getHealingValue());
+    goPlayerHealth();
+
+    System.out.println("Removing item...");
+    player1.getInventory().remove(food);
+    System.out.println("player inventory: " + player1.getInventory());
+
+
 
     }
 
 
+  public void consumeFood(Food food){
+
+
+
+
+
   }
+
+
 
 
   // Items/inv relaterede methods
@@ -412,6 +420,11 @@ public class Adventure {
 
         case "inv":
           goInv();
+
+          break;
+
+        case "health":
+          goPlayerHealth();
 
           break;
 
