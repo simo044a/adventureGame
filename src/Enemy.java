@@ -6,7 +6,7 @@ public class Enemy extends Player {
   private double enemyDamage;
   private Room enemyCurrentRoom;
 
-  public Enemy(String playerName, ArrayList<Item> inventory, double health) {
-    super(playerName, inventory, health);
+  public Enemy(String playerName, ArrayList<Item> inventory, ArrayList<Weapon> weaponEquipment, double health, boolean isPlayerAlive) {
+    super(playerName, inventory, weaponEquipment, health, isPlayerAlive);
   }
 }
