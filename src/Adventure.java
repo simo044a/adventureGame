@@ -6,7 +6,6 @@ public class Adventure {
   Scanner in = new Scanner(System.in);
   boolean isGameActive = true; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
   String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
-  String playerItem;
 
   ArrayList<Item> inventory = new ArrayList<Item>();
   ArrayList<Weapon> weaponEquipment = new ArrayList<Weapon>();
@@ -35,17 +34,17 @@ public class Adventure {
 
   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
   Food itemRoomCannedMeat = new Food("Canned meat", ", if you ever get hungry", "food", 30);
-  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 20);
+  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 10);
   Item itemRoomKeyCard = new Item("Keycard", ", might give access to somewhere", "key");
 
 
   Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 25);
 
 
-  Enemy enemyRaider = new Enemy("Raider", enemyInv, enemyWeaponInv, 60);
+  Enemy enemyRaider = new Enemy("Raider", enemyInv, enemyWeaponInv, 60, true);
 
 
-  Player player1 = new Player("player 1", inventory, weaponEquipment, 100);
+  Player player1 = new Player("player 1", inventory, weaponEquipment, 100, true);
 
 
   public void rooms() {
@@ -208,6 +207,12 @@ public class Adventure {
     } else {
       System.out.println("There seem to be no items laying around...");
     }
+    if (player1.getCurrentRoom() == enemyRaider.getCurrentRoom()) {
+      System.out.println(enemyRaider.getPlayerName() + " appeared! Seems like a threat");
+    }
+
+
+
   }
 
   public void goInv() {
@@ -377,6 +382,28 @@ public class Adventure {
 
   }
 
+  public void attackSeq() {
+
+    if (weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() != enemyRaider.getCurrentRoom())) {
+      System.out.println("You attacked the empty air");
+    } else if (enemyRaider.getIsPlayerAlive() && weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() == enemyRaider.getCurrentRoom())){
+      enemyRaider.setPlayerHealth(enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage());
+      System.out.println((enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage()));
+      System.out.println("You attacked the enemy " + enemyRaider.getPlayerName() + " with a damage amount of " + itemRoomKnife.getWeaponDamage());
+
+      System.out.println("Enemy current health " + enemyRaider.getPlayerHealth());
+
+      System.out.println("Enemy " + enemyRaider.getPlayerName() + " attacks you!");
+      player1.setPlayerHealth(player1.getPlayerHealth()-(enemyWeapon.getWeaponDamage()));
+
+      goPlayerHealth();
+
+    }
+
+
+
+  }
+
 
   // Items/inv relaterede methods
 
@@ -388,9 +415,15 @@ public class Adventure {
 
     while (isGameActive) {
 
+      if (player1.getPlayerHealth() <= 0.0) {
+        player1.setIsPlayerAlive(false);
+        if (player1.getIsPlayerAlive() == true);
+        isGameActive = false;
+      }
 
-      playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
 
+
+        playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
 
 
       /*I dette switch loop, tjekker input playerDirection om de giver et valid input. Alt efter hvilket rum spilleren
@@ -431,6 +464,11 @@ public class Adventure {
 
         case "health":
           goPlayerHealth();
+
+          break;
+
+        case "attack", "a":
+          attackSeq();
 
           break;
 
