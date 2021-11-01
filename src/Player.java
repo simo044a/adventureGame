@@ -7,14 +7,18 @@ public class Player {
   private double playerHealth;
   private ArrayList<Weapon> weaponEquipment;
   private Weapon currentWeapon;
+  private boolean isPlayerAlive;
 
-   public Player(String playerName,ArrayList<Item> inventory, double health) { // Constructor
+   public Player(String playerName,ArrayList<Item> inventory, ArrayList<Weapon> weaponEquipment, double health, boolean isPlayerAlive) { // Constructor
     this.setPlayerName(playerName);
     this.setInventory(inventory);
+    this.setWeaponEquipment(weaponEquipment);
     this.setPlayerHealth(health);
+    this.setIsPlayerAlive(isPlayerAlive);
   }
-  
-  
+
+  public void setIsPlayerAlive(boolean isPlayerAlive){this.isPlayerAlive = isPlayerAlive;}
+  public boolean getIsPlayerAlive(){return isPlayerAlive;}
 
   public void setPlayerHealth(double playerHealth){this.playerHealth = playerHealth;}
   public double getPlayerHealth(){return playerHealth;}
@@ -49,22 +53,23 @@ public class Player {
   public Room getCurrentRoom() {
     return currentRoom;
   }
-  
+
   public void setWeaponEquipment(ArrayList<Weapon> weaponEquipment){
      this.weaponEquipment = weaponEquipment;
   }
-  
+
   public ArrayList<Weapon> getWeaponEquipment(){
      return getWeaponEquipment();
   }
-  
+
   public void setCurrenWeapon(Weapon currentWeapon){
      this.currentWeapon = currentWeapon;
   }
-  
+
   public Weapon getCurrentWeapon(){
      return currentWeapon;
   }
+
 
 
 }

@@ -15,7 +15,7 @@ public class Item {
   public void setItemType(String itemType){this.itemType = itemType;}
   public String getItemType(){return itemType;}
 
-  Item(String itemName, String itemDescription, String itemType){
+  public Item(String itemName, String itemDescription, String itemType){
     setItemName(itemName);
     setItemDescription(itemDescription);
     setItemType(itemType);
