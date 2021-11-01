@@ -34,11 +34,11 @@ public class Adventure {
 
   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
   Food itemRoomCannedMeat = new Food("Canned meat", ", if you ever get hungry", "food", 30);
-  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 10);
+  Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 22);
   Item itemRoomKeyCard = new Item("Keycard", ", might give access to somewhere", "key");
 
 
-  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 25);
+  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 15);
 
 
   Enemy enemyRaider = new Enemy("Raider", enemyInv, enemyWeaponInv, 60, true);
@@ -386,7 +386,7 @@ public class Adventure {
 
     if (weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() != enemyRaider.getCurrentRoom())) {
       System.out.println("You attacked the empty air");
-    } else if (enemyRaider.getIsPlayerAlive() && weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() == enemyRaider.getCurrentRoom())){
+    } else if (enemyRaider.getIsPlayerAlive() == true && enemyRaider.getIsPlayerAlive() && weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() == enemyRaider.getCurrentRoom())){
       enemyRaider.setPlayerHealth(enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage());
       System.out.println((enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage()));
       System.out.println("You attacked the enemy " + enemyRaider.getPlayerName() + " with a damage amount of " + itemRoomKnife.getWeaponDamage());
@@ -397,6 +397,12 @@ public class Adventure {
       player1.setPlayerHealth(player1.getPlayerHealth()-(enemyWeapon.getWeaponDamage()));
 
       goPlayerHealth();
+      
+      if(enemyRaider.getPlayerHealth() <= 0) {
+          enemyRaider.setIsPlayerAlive(false);
+          System.out.println(enemyRaider + " died! Good job");
+        }
+      
 
     }
 
@@ -415,15 +421,10 @@ public class Adventure {
 
     while (isGameActive) {
 
-      if (player1.getPlayerHealth() <= 0.0) {
-        player1.setIsPlayerAlive(false);
-        if (player1.getIsPlayerAlive() == true);
-        isGameActive = false;
-      }
-
 
 
         playerDirection = in.nextLine(); //Alt input fra spilleren sker her.
+
 
 
       /*I dette switch loop, tjekker input playerDirection om de giver et valid input. Alt efter hvilket rum spilleren
@@ -478,6 +479,13 @@ public class Adventure {
 
         default:
           break;
+      }
+
+      if (player1.getPlayerHealth() <= 0) {
+        player1.setIsPlayerAlive(false);
+        System.out.println("Your health went below zero! You died... Ending game.");
+        if (player1.getIsPlayerAlive() == true);
+        isGameActive = false;
       }
 
     }
