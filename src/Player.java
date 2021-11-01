@@ -1,70 +1,75 @@
 import java.util.ArrayList;
 
 public class Player {
-  private String playerName; // Attributes
-  private ArrayList<Item> inventory; // -"-
-  private Room currentRoom; // -"-
-  private double playerHealth;
-  private ArrayList<Weapon> weaponEquipment;
-  private Weapon currentWeapon;
+    private String playerName; // Attributes
+    private ArrayList<Item> inventory; // -"-
+    private Room currentRoom; // -"-
+    private double playerHealth;
+    private ArrayList<Weapon> weaponEquipment;
+    private Weapon currentWeapon;
 
-   public Player(String playerName,ArrayList<Item> inventory, double health) { // Constructor
-    this.setPlayerName(playerName);
-    this.setInventory(inventory);
-    this.setPlayerHealth(health);
-  }
-  
-  
+    public Player(String playerName, ArrayList<Item> inventory, double health) { // Constructor
+        this.setPlayerName(playerName);
+        this.setInventory(inventory);
+        this.setPlayerHealth(health);
+    }
 
-  public void setPlayerHealth(double playerHealth){this.playerHealth = playerHealth;}
-  public double getPlayerHealth(){return playerHealth;}
 
-  public void takeItem(Item item) {
-    inventory.add(item);
-  }
-  public void dropItem(Item item) {
-    inventory.remove(item);
-  }
+    public void setPlayerHealth(double playerHealth) {
+        this.playerHealth = playerHealth;
+    }
 
-  public void setPlayerName(String playerName) {
-    this.playerName = playerName;
-  }
+    public double getPlayerHealth() {
+        return playerHealth;
+    }
 
-  public String getPlayerName() {
-    return playerName;
-  }
+    public void takeItem(Item item) {
+        inventory.add(item);
+    }
 
-  public void setInventory(ArrayList<Item> inventory) {
-    this.inventory = inventory;
-  }
+    public void dropItem(Item item) {
+        inventory.remove(item);
+    }
 
-  public ArrayList<Item> getInventory() {
-    return inventory;
-  }
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 
-  public void setCurrentRoom(Room currentRoom) {
-    this.currentRoom = currentRoom;
-  }
+    public String getPlayerName() {
+        return playerName;
+    }
 
-  public Room getCurrentRoom() {
-    return currentRoom;
-  }
-  
-  public void setWeaponEquipment(ArrayList<Weapon> weaponEquipment){
-     this.weaponEquipment = weaponEquipment;
-  }
-  
-  public ArrayList<Weapon> getWeaponEquipment(){
-     return getWeaponEquipment();
-  }
-  
-  public void setCurrenWeapon(Weapon currentWeapon){
-     this.currentWeapon = currentWeapon;
-  }
-  
-  public Weapon getCurrentWeapon(){
-     return currentWeapon;
-  }
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setWeaponEquipment(ArrayList<Weapon> weaponEquipment) {
+        this.weaponEquipment = weaponEquipment;
+    }
+
+    public ArrayList<Weapon> getWeaponEquipment() {
+        return getWeaponEquipment();
+    }
+
+    public void setCurrenWeapon(Weapon currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public Weapon getCurrentWeapon() {
+        return currentWeapon;
+    }
 
 
 }
