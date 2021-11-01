@@ -272,7 +272,7 @@ public class Adventure {
 
 
         case "yes", "y":
-          System.out.println("What item index would you like to take?");
+          System.out.println("What item index would you like to take? (write the index number)");
 
           int x = in.nextInt();
 
@@ -309,7 +309,7 @@ public class Adventure {
     if (player1.getInventory().size() == 0) {
       System.out.println("Sorry, your inventory is empty");
     } else {
-      System.out.println("What item item index would you like to drop?");
+      System.out.println("What item item index would you like to drop? (write the index number)");
 
       int y = in.nextInt();
 
@@ -370,8 +370,9 @@ public class Adventure {
   public void itemEquip(Weapon weapon) {
 
     weaponEquipment.add(weapon);
+    player1.dropItem(weapon);
     System.out.println("current equipped: " + weaponEquipment);
-    
+
   }
 
 
