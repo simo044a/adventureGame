@@ -3,45 +3,43 @@ import java.util.ArrayList;
 
 public class Adventure {
 
+  Scanner in = new Scanner(System.in);
+  boolean isGameActive = true; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
+  String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
+  String playerItem;
 
-   Scanner in = new Scanner(System.in);
-   boolean isGameActive = true; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
-   String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
-   String playerItem;
+  ArrayList<Item> inventory = new ArrayList<Item>();
 
-   ArrayList<Item> inventory = new ArrayList<Item>();
+  ArrayList<Item> itemRoom1 = new ArrayList<>();
+  ArrayList<Item> itemRoom2 = new ArrayList<>();
+  ArrayList<Item> itemRoom3 = new ArrayList<>();
+  ArrayList<Item> itemRoom4 = new ArrayList<>();
+  ArrayList<Item> itemRoom5 = new ArrayList<>();
+  ArrayList<Item> itemRoom6 = new ArrayList<>();
+  ArrayList<Item> itemRoom7 = new ArrayList<>();
+  ArrayList<Item> itemRoom8 = new ArrayList<>();
+  ArrayList<Item> itemRoom9 = new ArrayList<>();
+  ArrayList<Item> weaponArrayList = new ArrayList<>();
+  ArrayList<Item> enemyWeaponInv = new ArrayList<>();
 
-   ArrayList<Item> itemRoom1 = new ArrayList<>();
-   ArrayList<Item> itemRoom2 = new ArrayList<>();
-   ArrayList<Item> itemRoom3 = new ArrayList<>();
-   ArrayList<Item> itemRoom4 = new ArrayList<>();
-   ArrayList<Item> itemRoom5 = new ArrayList<>();
-   ArrayList<Item> itemRoom6 = new ArrayList<>();
-   ArrayList<Item> itemRoom7 = new ArrayList<>();
-   ArrayList<Item> itemRoom8= new ArrayList<>();
-   ArrayList<Item> itemRoom9 = new ArrayList<>();
-   ArrayList<Item> weaponArrayList = new ArrayList<>();
-   ArrayList<Item> enemyWeaponInv = new ArrayList<>();
-
-
-
-   Room room1;
-   Room room2;
-   Room room3;
-   Room room4;
-   Room room5;
-   Room room6;
-   Room room7;
-   Room room8;
-   Room room9;
+  Room room1;
+  Room room2;
+  Room room3;
+  Room room4;
+  Room room5;
+  Room room6;
+  Room room7;
+  Room room8;
+  Room room9;
 
   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
+  Food itemRoomCannedMeat = new Food("Canned meat", ", if you ever get hungry", "food", 30);
   Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 20);
-  Item itemRoomKey = new Item("key" , ", a key that could fit with a door", "Key");
-  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon",25);
+  Item itemRoomKey = new Item("key", ", a key that could fit with a door", "Key");
+  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 25);
 
 
-  Enemy enemyRaider = new Enemy("Raider", enemyWeaponInv,60);
+  Enemy enemyRaider = new Enemy("Raider", enemyWeaponInv, 60);
 
 
   Player player1 = new Player("player 1", inventory, 100);
@@ -110,6 +108,7 @@ public class Adventure {
     itemRoom2.add(itemRoomSoda);
     itemRoom5.add(itemRoomKey);
     itemRoom7.add(itemRoomKnife);
+    itemRoom4.add(itemRoomCannedMeat);
 
     room1.setSouth(room4);
     room1.setEast(room2);
@@ -154,7 +153,7 @@ public class Adventure {
   }
 
   // Commands
-  public void goNorth(){
+  public void goNorth() {
 
     if (player1.getCurrentRoom().getNorth() != null) {
       player1.setCurrentRoom(player1.getCurrentRoom().getNorth());
@@ -164,7 +163,8 @@ public class Adventure {
       System.out.println("You cannot go in that direction. Try another one");
     }
   }
-  public void goSouth(){
+
+  public void goSouth() {
 
     if (player1.getCurrentRoom().getSouth() != null) {
       player1.setCurrentRoom(player1.getCurrentRoom().getSouth());
@@ -174,7 +174,8 @@ public class Adventure {
       System.out.println("You cannot go in that direction. Try another one");
     }
   }
-  public void goWest(){
+
+  public void goWest() {
 
     if (player1.getCurrentRoom().getWest() != null) {
       player1.setCurrentRoom(player1.getCurrentRoom().getWest());
@@ -184,7 +185,8 @@ public class Adventure {
       System.out.println("You cannot go in that direction. Try another one");
     }
   }
-  public void goEast(){
+
+  public void goEast() {
 
     if (player1.getCurrentRoom().getEast() != null) {
       player1.setCurrentRoom(player1.getCurrentRoom().getEast());
@@ -194,7 +196,8 @@ public class Adventure {
       System.out.println("You cannot go in that direction. Try another one");
     }
   }
-  public void goLook(){
+
+  public void goLook() {
 
     System.out.println("You are currently here: \n" + player1.getCurrentRoom().getName());
     if (player1.getCurrentRoom().getRoomContent() != null) {
@@ -203,6 +206,7 @@ public class Adventure {
       System.out.println("There seem to be no items laying around...");
     }
   }
+
   public void goInv() {
 
     System.out.println("You currently have this in your inventory");
@@ -243,7 +247,8 @@ public class Adventure {
 
     }
   }
-  public void goPlayerHealth(){
+
+  public void goPlayerHealth() {
     System.out.println("Player current health: " + player1.getPlayerHealth());
   }
 
@@ -253,7 +258,7 @@ public class Adventure {
 
     System.out.println("You look around the area to see if there is any items you could pick up..");
 
-    if(player1.getCurrentRoom().getRoomContent().size()==0){
+    if (player1.getCurrentRoom().getRoomContent().size() == 0) {
       System.out.println("No item in room");
     } else {
       System.out.println(player1.getCurrentRoom().getRoomContent());
@@ -294,12 +299,13 @@ public class Adventure {
 
     }
 
-    }
-  public void itemRoomDrop(){
+  }
+
+  public void itemRoomDrop() {
 
     player1.getInventory();
 
-    if(player1.getInventory().size() == 0) {
+    if (player1.getInventory().size() == 0) {
       System.out.println("Sorry, your inventory is empty");
     } else {
       System.out.println("What item item index would you like to drop?");
@@ -321,7 +327,8 @@ public class Adventure {
     }
 
   }
-  public void itemUse(){
+
+  public void itemUse() {
 
     System.out.println(player1.getInventory());
 
@@ -329,23 +336,21 @@ public class Adventure {
 
     int inputItemUse = in.nextInt();
 
-    if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("food")) {
+    if (player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("food")) {
 
       Food objFood = (Food) player1.getInventory().get(inputItemUse);
 
       itemHealing(objFood);
 
-    } else if(player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon")) {
+    } else if (player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon") && player1.getWeaponEquipment().size() == 0) {
       Weapon objWeapon = (Weapon) player1.getInventory().get(inputItemUse);
       itemEquip(objWeapon);
     }
 
 
-
-
   }
 
-  public void itemHealing(Food food){
+  public void itemHealing(Food food) {
 
     System.out.println("Player is healing..");
 
@@ -357,14 +362,13 @@ public class Adventure {
     System.out.println("player inventory: " + player1.getInventory());
 
 
-
-    }
-  public void itemEquip(Weapon weapon){
-
-player1.getWeaponEquipment().add(weapon);
-    System.out.println(player1.getWeaponEquipment() + " is equipped");
   }
 
+  public void itemEquip(Weapon weapon) {
+
+    player1.getWeaponEquipment().add(weapon);
+    System.out.println(player1.getWeaponEquipment() + " is equipped");
+  }
 
 
   // Items/inv relaterede methods
@@ -431,9 +435,10 @@ player1.getWeaponEquipment().add(weapon);
           break;
       }
 
-      }
-
     }
+
+  }
+
   public void roomDes() {
     System.out.println(player1.getCurrentRoom().getName() + "\n " + player1.getCurrentRoom().getRoomDescription());
   }
@@ -456,7 +461,6 @@ player1.getWeaponEquipment().add(weapon);
          
         "You wake up in a van. You go outside to check your surroundings."
          """);
-
 
 
     roomMethods.roomLoop();
