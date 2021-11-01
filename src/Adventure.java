@@ -36,6 +36,7 @@ public class Adventure {
   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
   Food itemRoomCannedMeat = new Food("Canned meat", ", if you ever get hungry", "food", 30);
   Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 20);
+  Item itemRoomKeyCard = new Item("Keycard", ", might give access to somewhere", "key");
 
 
   Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 25);
@@ -110,6 +111,7 @@ public class Adventure {
     itemRoom2.add(itemRoomSoda);
     itemRoom7.add(itemRoomKnife);
     itemRoom4.add(itemRoomCannedMeat);
+    itemRoom6.add(itemRoomKeyCard);
 
     room1.setSouth(room4);
     room1.setEast(room2);
