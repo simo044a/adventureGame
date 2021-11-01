@@ -404,7 +404,7 @@ public class Adventure {
     if (!isWeaponEquip() && (player1.getCurrentRoom() != player1.getCurrentEnemy().getCurrentRoom())) {
       System.out.println("You attacked the empty space");
     }
-    if (!isWeaponEquip() && player1.getCurrentRoom() == enemyRaider.getCurrentRoom()) {
+    if (!isWeaponEquip() && player1.getCurrentRoom() == enemyRaider.getCurrentRoom() && player1.getCurrentEnemy().getIsPlayerAlive()) {
       player1.getCurrentEnemy().setPlayerHealth(player1.getCurrentEnemy().getPlayerHealth() - player1.getCurrentWeapon().getWeaponDamage());
       System.out.println((player1.getCurrentEnemy().getPlayerHealth() - player1.getCurrentWeapon().getWeaponDamage()));
       System.out.println("You attacked the enemy " + player1.getCurrentEnemy().getPlayerName() + " with a damage amount of " + player1.getCurrentWeapon().getWeaponDamage());
@@ -426,6 +426,9 @@ public class Adventure {
         }
     }
 
+    if(isWeaponEquip()){
+      System.out.println("You have nothing equipped to attack with...");
+    }
 
 
   }
