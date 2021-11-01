@@ -20,7 +20,8 @@ public class Adventure {
   ArrayList<Item> itemRoom7 = new ArrayList<>();
   ArrayList<Item> itemRoom8 = new ArrayList<>();
   ArrayList<Item> itemRoom9 = new ArrayList<>();
-  ArrayList<Item> enemyWeaponInv = new ArrayList<>();
+  ArrayList<Item> enemyInv = new ArrayList<>();
+  ArrayList<Weapon> enemyWeaponInv = new ArrayList<>();
 
   Room room1;
   Room room2;
@@ -35,14 +36,15 @@ public class Adventure {
   Food itemRoomSoda = new Food("Soda", ", a bottle you can drink from", "food", 25);
   Food itemRoomCannedMeat = new Food("Canned meat", ", if you ever get hungry", "food", 30);
   Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 20);
-  Item itemRoomKey = new Item("key", ", a key that could fit with a door", "Key");
+
+
   Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 25);
 
 
-  Enemy enemyRaider = new Enemy("Raider", enemyWeaponInv, 60);
+  Enemy enemyRaider = new Enemy("Raider", enemyInv, enemyWeaponInv, 60);
 
 
-  Player player1 = new Player("player 1", inventory, 100);
+  Player player1 = new Player("player 1", inventory, weaponEquipment, 100);
 
 
   public void rooms() {
@@ -106,7 +108,6 @@ public class Adventure {
     // Her bliver attributterne tildelt, for hvordan hvert rum ligger i forhold til hinandens retninger.
 
     itemRoom2.add(itemRoomSoda);
-    itemRoom5.add(itemRoomKey);
     itemRoom7.add(itemRoomKnife);
     itemRoom4.add(itemRoomCannedMeat);
 
@@ -367,8 +368,10 @@ public class Adventure {
   }
 
   public void itemEquip(Weapon weapon) {
+
     weaponEquipment.add(weapon);
-    System.out.println("Current weapon equipped " + weaponEquipment);
+    System.out.println("current equipped: " + weaponEquipment);
+    
   }
 
 
