@@ -394,9 +394,6 @@ public class Adventure {
   public void itemEquip(Weapon weapon) {
 
     player1.setCurrenWeapon(weapon);
-
-    weaponEquipment.add(weapon);
-    player1.dropItem(weapon);
     System.out.println("current equipped: " + player1.getCurrentWeapon());
 
   }
@@ -423,10 +420,16 @@ public class Adventure {
           player1.getCurrentEnemy().setIsPlayerAlive(false);
           System.out.println(player1.getCurrentEnemy().getPlayerName() + " died! Good job");
           enemyRaiderHasDied = true;
+          player1.getCurrentEnemy().dropItem(player1.getCurrentEnemy().getCurrentWeapon());
           player1.getCurrentEnemy().setCurrentRoom(null);
+          player1.setCurrentEnemy(null);
+
         }
       }
 
+    }
+    if(!isWeaponEquip()){
+      System.out.println("You have nothing equipped to attack with..");
     }
 
 
