@@ -6,9 +6,8 @@ public class Adventure {
   Scanner in = new Scanner(System.in);
   boolean isGameActive = true; // boolean værdi til while-loop, for at køre spillet, indtil der gives et exit input.
   String playerDirection; // String input til spilleren, som bliver checket i switch og if-loop.
-
   ArrayList<Item> inventory = new ArrayList<Item>();
-  ArrayList<Weapon> weaponEquipment = new ArrayList<Weapon>();
+  ArrayList<Weapon> weaponEquipment = new ArrayList<>();
 
   ArrayList<Item> itemRoom1 = new ArrayList<>();
   ArrayList<Item> itemRoom2 = new ArrayList<>();
@@ -21,6 +20,7 @@ public class Adventure {
   ArrayList<Item> itemRoom9 = new ArrayList<>();
   ArrayList<Item> enemyInv = new ArrayList<>();
   ArrayList<Weapon> enemyWeaponInv = new ArrayList<>();
+  boolean enemyRaiderHasDied;
 
   Room room1;
   Room room2;
@@ -37,14 +37,13 @@ public class Adventure {
   Weapon itemRoomKnife = new Weapon("Knife", ", a weapon you could use against enemies", "weapon", 22);
   Item itemRoomKeyCard = new Item("Keycard", ", might give access to somewhere", "key");
 
-
-  Weapon enemyWeapon = new Weapon("gun", "A powerful weapon", "weapon", 15);
-
-
-  Enemy enemyRaider = new Enemy("Raider", enemyInv, enemyWeaponInv, 60, true);
+  Weapon itemRoomPipeIron = new Weapon("pipe iron", "A powerful weapon", "weapon", 20);
 
 
-  Player player1 = new Player("player 1", inventory, weaponEquipment, 100, true);
+  Enemy enemyRaider = new Enemy("Raider", enemyInv, 60, true);
+
+
+  Player player1 = new Player("player 1", inventory, 100, true);
 
 
   public void rooms() {
@@ -146,7 +145,6 @@ public class Adventure {
     room8.setEast(room9);
     room8.setRoomContent(itemRoom8);
     enemyRaider.setCurrentRoom(room8);
-    enemyWeaponInv.add(enemyWeapon);
 
     room9.setNorth(room6);
     room9.setWest(room8);
@@ -209,6 +207,7 @@ public class Adventure {
     }
     if (player1.getCurrentRoom() == enemyRaider.getCurrentRoom()) {
       System.out.println(enemyRaider.getPlayerName() + " appeared! Seems like a threat");
+      player1.setCurrentEnemy(enemyRaider);
     }
 
 
@@ -258,6 +257,17 @@ public class Adventure {
 
   public void goPlayerHealth() {
     System.out.println("Player current health: " + player1.getPlayerHealth());
+  }
+
+  public boolean isEnemyDead(){
+
+    if (player1.getCurrentEnemy().getPlayerHealth() > 0){
+      enemyRaiderHasDied = false;
+      return false;
+    } else {
+      return true;
+    }
+
   }
 
   // Item commands
@@ -374,35 +384,48 @@ public class Adventure {
 
   }
 
+  public boolean isWeaponEquip() {
+    if(player1.getCurrentWeapon() == null){
+      return true;
+    } else {
+      return false;
+    }
+  }
   public void itemEquip(Weapon weapon) {
+
+    player1.setCurrenWeapon(weapon);
 
     weaponEquipment.add(weapon);
     player1.dropItem(weapon);
-    System.out.println("current equipped: " + weaponEquipment);
+    System.out.println("current equipped: " + player1.getCurrentWeapon());
 
   }
 
   public void attackSeq() {
 
-    if (weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() != enemyRaider.getCurrentRoom())) {
-      System.out.println("You attacked the empty air");
-    } else if (enemyRaider.getIsPlayerAlive() == true && enemyRaider.getIsPlayerAlive() && weaponEquipment.contains(itemRoomKnife) && (player1.getCurrentRoom() == enemyRaider.getCurrentRoom())){
-      enemyRaider.setPlayerHealth(enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage());
-      System.out.println((enemyRaider.getPlayerHealth()-itemRoomKnife.getWeaponDamage()));
-      System.out.println("You attacked the enemy " + enemyRaider.getPlayerName() + " with a damage amount of " + itemRoomKnife.getWeaponDamage());
+    if (isWeaponEquip() && (player1.getCurrentRoom() != player1.getCurrentEnemy().getCurrentRoom())) {
+      System.out.println("You attacked the empty space");
+    } else if (player1.getCurrentEnemy().getIsPlayerAlive() == true && player1.getCurrentEnemy().getIsPlayerAlive() && isWeaponEquip() && (player1.getCurrentRoom() == player1.getCurrentEnemy().getCurrentRoom())){
+      player1.getCurrentEnemy().setPlayerHealth(player1.getCurrentEnemy().getPlayerHealth()-player1.getCurrentWeapon().getWeaponDamage());
+      System.out.println((player1.getCurrentEnemy().getPlayerHealth()-player1.getCurrentWeapon().getWeaponDamage()));
+      System.out.println("You attacked the enemy " + player1.getCurrentEnemy().getPlayerName() + " with a damage amount of " + player1.getCurrentWeapon().getWeaponDamage());
 
-      System.out.println("Enemy current health " + enemyRaider.getPlayerHealth());
+      System.out.println("Enemy current health " + player1.getCurrentEnemy().getPlayerHealth());
 
-      System.out.println("Enemy " + enemyRaider.getPlayerName() + " attacks you!");
-      player1.setPlayerHealth(player1.getPlayerHealth()-(enemyWeapon.getWeaponDamage()));
+      System.out.println("Enemy " + player1.getCurrentEnemy().getPlayerName() + " attacks you!");
+      player1.setPlayerHealth(player1.getPlayerHealth()-(player1.getCurrentEnemy().getCurrentWeapon().getWeaponDamage()));
 
       goPlayerHealth();
-      
-      if(enemyRaider.getPlayerHealth() <= 0) {
-          enemyRaider.setIsPlayerAlive(false);
-          System.out.println(enemyRaider + " died! Good job");
+      isEnemyDead();
+
+      if (!enemyRaiderHasDied) {
+        if (isEnemyDead()) {
+          player1.getCurrentEnemy().setIsPlayerAlive(false);
+          System.out.println(player1.getCurrentEnemy().getPlayerName() + " died! Good job");
+          enemyRaiderHasDied = true;
+          player1.getCurrentEnemy().setCurrentRoom(null);
         }
-      
+      }
 
     }
 
@@ -418,6 +441,7 @@ public class Adventure {
   public void roomLoop() {
 
     player1.setCurrentRoom(room1);
+    enemyRaider.setCurrenWeapon(itemRoomPipeIron);
 
     while (isGameActive) {
 
@@ -509,8 +533,10 @@ public class Adventure {
                
         Choose a direction to go: north, south, west and east.
                
-        Other helpful commands: "look", for getting the name and description of the current area - and checking for items in the area,
+        Helpful commands: "look", for getting the name and description of the current area - and checking for items and enemies in the area,
         or write "exit" to end the game.
+        
+        "inv" to check your current inventory - "use" to consume or equip items, and "drop" to leave an item in the current area.
          
         "You wake up in a van. You go outside to check your surroundings."
          """);
