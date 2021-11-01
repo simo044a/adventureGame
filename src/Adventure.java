@@ -9,6 +9,7 @@ public class Adventure {
   String playerItem;
 
   ArrayList<Item> inventory = new ArrayList<Item>();
+  ArrayList<Weapon> weaponEquipment = new ArrayList<Weapon>();
 
   ArrayList<Item> itemRoom1 = new ArrayList<>();
   ArrayList<Item> itemRoom2 = new ArrayList<>();
@@ -19,7 +20,6 @@ public class Adventure {
   ArrayList<Item> itemRoom7 = new ArrayList<>();
   ArrayList<Item> itemRoom8 = new ArrayList<>();
   ArrayList<Item> itemRoom9 = new ArrayList<>();
-  ArrayList<Item> weaponArrayList = new ArrayList<>();
   ArrayList<Item> enemyWeaponInv = new ArrayList<>();
 
   Room room1;
@@ -342,10 +342,12 @@ public class Adventure {
 
       itemHealing(objFood);
 
-    } else if (player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon") && player1.getWeaponEquipment().size() == 0) {
+    } else if (player1.getInventory().get(inputItemUse).getItemType().equalsIgnoreCase("weapon") && weaponEquipment.size()==0) {
       Weapon objWeapon = (Weapon) player1.getInventory().get(inputItemUse);
-      itemEquip(objWeapon);
+     itemEquip(objWeapon);
     }
+
+
 
 
   }
@@ -365,9 +367,8 @@ public class Adventure {
   }
 
   public void itemEquip(Weapon weapon) {
-
-    player1.getWeaponEquipment().add(weapon);
-    System.out.println(player1.getWeaponEquipment() + " is equipped");
+    weaponEquipment.add(weapon);
+    System.out.println("Current weapon equipped " + weaponEquipment);
   }
 
 
@@ -467,4 +468,5 @@ public class Adventure {
 
 
   }
+
 }
