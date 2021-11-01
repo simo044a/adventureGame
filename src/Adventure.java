@@ -400,36 +400,30 @@ public class Adventure {
 
   public void attackSeq() {
 
-    if (isWeaponEquip() && (player1.getCurrentRoom() != player1.getCurrentEnemy().getCurrentRoom())) {
+
+    if (!isWeaponEquip() && (player1.getCurrentRoom() != player1.getCurrentEnemy().getCurrentRoom())) {
       System.out.println("You attacked the empty space");
-    } else if (player1.getCurrentEnemy().getIsPlayerAlive() == true && player1.getCurrentEnemy().getIsPlayerAlive() && isWeaponEquip() && (player1.getCurrentRoom() == player1.getCurrentEnemy().getCurrentRoom())){
-      player1.getCurrentEnemy().setPlayerHealth(player1.getCurrentEnemy().getPlayerHealth()-player1.getCurrentWeapon().getWeaponDamage());
-      System.out.println((player1.getCurrentEnemy().getPlayerHealth()-player1.getCurrentWeapon().getWeaponDamage()));
+    }
+    if (!isWeaponEquip() && player1.getCurrentRoom() == enemyRaider.getCurrentRoom()) {
+      player1.getCurrentEnemy().setPlayerHealth(player1.getCurrentEnemy().getPlayerHealth() - player1.getCurrentWeapon().getWeaponDamage());
+      System.out.println((player1.getCurrentEnemy().getPlayerHealth() - player1.getCurrentWeapon().getWeaponDamage()));
       System.out.println("You attacked the enemy " + player1.getCurrentEnemy().getPlayerName() + " with a damage amount of " + player1.getCurrentWeapon().getWeaponDamage());
 
       System.out.println("Enemy current health " + player1.getCurrentEnemy().getPlayerHealth());
 
       System.out.println("Enemy " + player1.getCurrentEnemy().getPlayerName() + " attacks you!");
-      player1.setPlayerHealth(player1.getPlayerHealth()-(player1.getCurrentEnemy().getCurrentWeapon().getWeaponDamage()));
+      player1.setPlayerHealth(player1.getPlayerHealth() - (player1.getCurrentEnemy().getCurrentWeapon().getWeaponDamage()));
 
       goPlayerHealth();
-      isEnemyDead();
 
+    }
       if (!enemyRaiderHasDied) {
         if (isEnemyDead()) {
           player1.getCurrentEnemy().setIsPlayerAlive(false);
           System.out.println(player1.getCurrentEnemy().getPlayerName() + " died! Good job");
           enemyRaiderHasDied = true;
-          player1.getCurrentEnemy().dropItem(player1.getCurrentEnemy().getCurrentWeapon());
           player1.getCurrentEnemy().setCurrentRoom(null);
-          player1.setCurrentEnemy(null);
-
         }
-      }
-
-    }
-    if(!isWeaponEquip()){
-      System.out.println("You have nothing equipped to attack with..");
     }
 
 
@@ -444,6 +438,7 @@ public class Adventure {
   public void roomLoop() {
 
     player1.setCurrentRoom(room1);
+    player1.setCurrentEnemy(enemyRaider);
     enemyRaider.setCurrenWeapon(itemRoomPipeIron);
 
     while (isGameActive) {
